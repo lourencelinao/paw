@@ -16,6 +16,8 @@ app.use('/api/user', require('./routes/api/user'))
 // routes below are protected, meaning it needs authentication and authorization
 app.use('/api', protect)
 
+// nigger ****************************
+
 // please put route middleware below, example
 // app.use('/aaaa', require('./routes/api/aaaa'))
 
