@@ -1,8 +1,16 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send()
-})
+const {
+  createIntake,
+  getIntake,
+  patchIntake,
+  deleteIntake,
+} = require("../../controllers/intake");
 
-module.exports = router
+router.get('/', getIntake);
+router.post('/create', createIntake);
+router.patch('/:id', patchIntake);
+router.delete('/:id', deleteIntake);
+
+module.exports = router;
