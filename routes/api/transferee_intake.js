@@ -1,8 +1,12 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/', (req, res) => {
-    res.send()
-})
+const {createTransferee, getTransferee, patchTransferee, deleteTransferee} = require('../../controllers/transferee_intake')
+
+
+router.get('/',getTransferee)
+router.post('/create',createTransferee)
+router.patch('/:id',patchTransferee)
+router.delete('/:id',deleteTransferee)
 
 module.exports = router
