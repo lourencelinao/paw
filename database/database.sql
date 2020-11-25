@@ -52,19 +52,32 @@ create table person (
 	constraint pk_person_id primary key(person_id)
 );
 
-create table user(
+create table person_image(
+	person_image_id int auto_increment,
+	person_id int,
+	image blob not null,
+	table_status enum('Active', 'Deleted') DEFAULT 'Active',
+	created DATETIME DEFAULT now(),
+	deleted DATETIME,
+
+	constraint pk_person_image primary key(person_image_id),
+	constraint fk_person_image foreign key(person_id) references person(person_id)
+);
+
+create table users(
 	user_id int auto_increment,
 	person_id int NOT NULL,
 	user_type enum('Admin', 'Manager', 'Staff', 'Volunteer') DEFAULT 'Admin', 
 	email varchar(128) not null,
 	password varchar(256) NOT NULL,
+	image blob,
 	table_status enum('Active', 'Deleted') DEFAULT 'Active',
 	created datetime DEFAULT now(),
 	updated datetime,
 	deleted datetime,
 	
-	constraint pk_user_id primary key(user_id),
-	constraint fk_user_id foreign key(person_id) references person(person_id)
+	constraint pk_users primary key(user_id),
+	constraint fk_users foreign key(person_id) references person(person_id)
 );
 
 create table clinic (
@@ -81,7 +94,7 @@ create table clinic (
 	updated datetime,
 	deleted datetime, 
 	
-	constraint pk_clinic_id primary key(clinic_id)
+	constraint pk_clinic primary key(clinic_id)
 );
 
 create table veterinarian (
@@ -94,8 +107,8 @@ create table veterinarian (
 	created datetime DEFAULT now(),
 	deleted datetime, 
 	
-	constraint pk_vet_id primary key(vet_id),
-	constraint fk_vet_id foreign key(clinic_id) references clinic(clinic_id)
+	constraint pk_vet primary key(vet_id),
+	constraint fk_vet foreign key(clinic_id) references clinic(clinic_id)
 );
 
 
@@ -114,10 +127,10 @@ create table medical_record(
 	created datetime DEFAULT now(),
 	deleted datetime, 
 
-	constraint pk_medical_id primary key(medical_id),
-	constraint fk1_medical_id foreign key(dog_id) references dog(dog_id),
-	constraint fk2_medical_id foreign key(clinic_id) references clinic(clinic_id),
-	constraint fk3_medical_id foreign key(vet_id) references veterinarian(vet_id)	
+	constraint pk_medical_record primary key(medical_id),
+	constraint fk1_medical_record foreign key(dog_id) references dog(dog_id),
+	constraint fk2_medical_record foreign key(clinic_id) references clinic(clinic_id),
+	constraint fk3_medical_record foreign key(vet_id) references veterinarian(vet_id)	
 );
 
 create table vaccination(
@@ -243,6 +256,6 @@ create table action(
 	deleted DATETIME,
 
 	constraint pk_action primary key (action_id),
-	constraint fk_action foreign key(user_id) references user(user_id)
+	constraint fk_action foreign key(user_id) references users(user_id)
 );
 

@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-primary {
+        @apply bg-bluegray-700 text-white font-medium tracking-widest rounded-md hover:bg-bluegray-800 focus:outline-none;
+    },
+    .btn-secondary {
+        @apply border-2 border-bluegray-700 rounded-md text-bluegray-700 font-medium tracking-widest focus:outline-none hover:bg-bluegray-800 hover:text-white
+    }
+}
