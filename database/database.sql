@@ -240,7 +240,7 @@ create table adopted_outtake(
 
 create table application(
 	application_id int auto_increment,
-	application_type enum('Adoption', 'Surrender', 'Volunteer') NOT NULL,
+	application_type enum('Adoption', 'Surrender', 'Volunteer', 'Transfer') NOT NULL,
 	person_id int NOT NULL,
 	dog_id int,
 	comment text NOT NULL,
