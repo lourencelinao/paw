@@ -238,6 +238,19 @@ create table adopted_outtake(
 	constraint fk2_adopted foreign key(outtake_id) references outtake(outtake_id)
 );
 
+create table application(
+	application_id int auto_increment,
+	application_type enum('Adoption', 'Surrender', 'Volunteer') NOT NULL,
+	person_id int NOT NULL,
+	dog_id int,
+	comment text NOT NULL,
+	application_form blob NOT NULL,
+	date_received DATETIME DEFAULT now(),
+
+	constraint pk_application primary key(application_id),
+	constraint fk1_application foreign key(person_id) references person(person_id),
+	constraint fk2_application foreign key(dog_id) references dog(dog_id)
+);
 
 create table action(
 	action_id int auto_increment,
@@ -247,7 +260,7 @@ create table action(
 	action_type enum('Created', 'Updated', 'Deleted') NOT NULL,
 	created DATETIME DEAULT now(),
 
-	constraint pk_action primary key (action_id),
+	constraint pk_action primary key(action_id),
 	constraint fk_action foreign key(user_id) references user(user_id)
 );
 

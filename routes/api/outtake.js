@@ -10,4 +10,5 @@ const {
 router.get('/', getOuttake);
 router.post('/addDog', addOuttake);
 router.post('/deleteDog', deleteOuttake);
+
 module.exports = router
