@@ -75,7 +75,7 @@ create table users(
 	updated datetime,
 	deleted datetime,
 
-	constraint pk_user primary key(users_id),
+	constraint pk_user primary key(user_id),
 	constraint fk_user foreign key(person_id) references person(person_id)
 );
 
@@ -267,13 +267,13 @@ create table application(
 
 create table action(
 	action_id int auto_increment,
-	users_id int NOT NULL,
+	user_id int NOT NULL,
 	table_id int NOT NULL,
 	table_name varchar(50) NOT NULL,
 	action_type enum('Created', 'Updated', 'Deleted') NOT NULL,
 	created DATETIME DEFAULT now(),
 
 	constraint pk_action primary key(action_id),
-	constraint fk_action foreign key(users_id) references users(users_id)
+	constraint fk_action foreign key(user_id) references users(user_id)
 );
 
