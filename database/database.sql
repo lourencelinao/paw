@@ -39,6 +39,7 @@ create table person (
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
 	middle_initial char(1) NOT NULL,
+	birthdate DATETIME NOT NULL,
 	contact_number varchar(11) NOT NULL,
 	email_address varchar(128) NOT NULL,
 	address1 varchar(256) NOT NULL,
