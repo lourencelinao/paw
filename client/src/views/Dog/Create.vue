@@ -7,7 +7,7 @@
 		<!-- input fields -->
 
 		<div class="mt-5 min-w-full">
-			<form action="">
+			<form @submit.prevent="postDog">
 				<!-- name -->
 				<div class="grid grid-cols-1 lg:grid-cols-2 sm:gap-4 gap-y-4">
 					<div>
@@ -17,6 +17,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="dog.dog_name"
 						/>
 					</div>
 
@@ -28,6 +29,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="dog.breed"
 						/>
 					</div>
 
@@ -39,6 +41,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="dog.birthday"
 						/>
 					</div>
 
@@ -49,6 +52,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="dog.sex"
 						>
 							<option value="">Male</option>
 							<option value="">Female</option>
@@ -64,6 +68,7 @@
 							id=""
 							step="0.01"
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="dog.weight"
 						/>
 					</div>
 
@@ -75,6 +80,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="dog.marks"
 						/>
 					</div>
 
@@ -86,6 +92,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="dog.color"
 						/>
 					</div>
 
@@ -96,6 +103,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="dog.status"
 						>
 							<option value="">Adopted</option>
 							<option value="">Inactive</option>
@@ -112,6 +120,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="dog.aggressive"
 						>
 							<option value="">No</option>
 							<option value="">Yes</option>
@@ -125,6 +134,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="dog.trained"
 						>
 							<option value="">No</option>
 							<option value="">Yes</option>
@@ -139,11 +149,12 @@
 						name=""
 						id=""
 						class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+						v-model="dog.description"
 					></textarea>
 				</div>
 
 				<!-- file upload -->
-				<div class="mt-4">
+				<!-- <div class="mt-4">
 					<div class="text-bluegray-700">
 						<input id="fileUpload" type="file" hidden multiple />
 						<button
@@ -154,7 +165,7 @@
 							Upload Images
 						</button>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="flex justify-end space-x-3 mt-5">
 					<button class="btn-secondary px-4 py-2">Cancel</button>
@@ -167,14 +178,42 @@
 
 <script>
 	import { UploadIcon, Tren } from "vue-feather-icons";
+	import DogService from '../../Services/DogService'
 	export default {
 		components: {
 			UploadIcon,
 		},
+		data(){
+			return{
+				dog: {
+					dog_name: '',
+			breed: '',
+			birthday: '',
+			sex: '',
+			weight: '',
+			color: '',
+			marks: '',
+			aggressive: '',
+			trained: '',
+			status: '',
+			table_status: '',
+			description: '',
+				}
+			}
+		},
 		methods: {
-			chooseFiles() {
-				document.getElementById("fileUpload").click();
-			},
+			// chooseFiles() {
+			// 	document.getElementById("fileUpload").click();
+			// },
+
+			async postDog() {
+				// insert input error handling here
+				try{
+					await DogService.postDog(this.dog)
+				}catch(error) {
+					console.error(error.message)
+				}
+			}
 		},
 	};
 </script>
