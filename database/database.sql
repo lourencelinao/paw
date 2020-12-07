@@ -52,16 +52,29 @@ create table person (
 	constraint pk_person primary key(person_id)
 );
 
+create table person_image(
+	person_image_id int auto_increment,
+	person_id int,
+	image blob not null,
+	table_status enum('Active', 'Deleted') DEFAULT 'Active',
+	created DATETIME DEFAULT now(),
+	deleted DATETIME,
+
+	constraint pk_person_image primary key(person_image_id),
+	constraint fk_person_image foreign key(person_id) references person(person_id)
+);
+
 create table users(
-	users_id int auto_increment,
+	user_id int auto_increment,
 	person_id int NOT NULL,
 	user_type enum('Admin', 'Manager', 'Staff', 'Volunteer') DEFAULT 'Admin', 
 	password varchar(256) NOT NULL,
+	image blob,
 	table_status enum('Active', 'Deleted') DEFAULT 'Active',
 	created datetime DEFAULT now(),
 	updated datetime,
 	deleted datetime,
-	
+
 	constraint pk_user primary key(users_id),
 	constraint fk_user foreign key(person_id) references person(person_id)
 );
