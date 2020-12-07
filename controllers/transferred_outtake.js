@@ -9,7 +9,7 @@ const getTransferred_outtake = (req, res) => {
 }
 
 const addTransferred_outtake = (req, res) => {
-    connection.query("INSERT INTO transferred_outtake (shelter_name, address1, address2, city, province, contact_number, email_address) VALUES ('"+req.body.shelter_name+"', '"+req.body.address1+"', '"+req.body.address2+"', '"+req.body.city+"', '"+req.body.province+"', '"+req.body.contact_number+"', '"+req.body.email_address+"')", (err, result)=>{
+    connection.query("INSERT INTO transferred_outtake (outtake_id, shelter_name, address1, address2, city, province, contact_number, email_address) VALUES ('"+req.body.outtake_id+"', '"+req.body.shelter_name+"', '"+req.body.address1+"', '"+req.body.address2+"', '"+req.body.city+"', '"+req.body.province+"', '"+req.body.contact_number+"', '"+req.body.email_address+"')", (err, result)=>{
         if(result){
             res.send(result);
         }

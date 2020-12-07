@@ -9,7 +9,7 @@ const getAdopted_outtake = (req, res) => {
 }
 
 const addAdopted_outtake = (req, res) => {
-    connection.query("INSERT INTO adopted_outtake (person_id) VALUES ('"+req.body.person_id+"')", (err, result)=>{
+    connection.query("INSERT INTO adopted_outtake (person_id, outtake_id) VALUES ('"+req.body.person_id+"', '"+req.body.outtake_id+"')", (err, result)=>{
         if(result){
             res.send(result);
         }

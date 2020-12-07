@@ -9,7 +9,7 @@ const getOuttake = (req, res) => {
 }
 
 const addOuttake = (req, res) => {
-    connection.query("INSERT INTO outtake (dog_id, outtakeable_id, outtakeable_type) VALUES ('"+req.body.dog_id+"', '"+req.body.outtakeable_id+"', '"+req.body.outtakeable_type+"')", (err, result)=>{
+    connection.query("INSERT INTO outtake (dog_id, outtakeable_type) VALUES ('"+req.body.dog_id+"', '"+req.body.outtakeable_type+"')", (err, result)=>{
         if(result){
             res.send(result);
         }
