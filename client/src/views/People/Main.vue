@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="flex justify-between items-baseline">
+		<!-- <div class="flex justify-between items-baseline">
 			<div class="text-2xl text-bluegray-700">Users</div>
 			<router-link
 				to="/people/user/create"
@@ -8,9 +8,9 @@
 				><user-plus-icon size="1.25x" class="mr-1"></user-plus-icon> New
 				User</router-link
 			>
-		</div>
+		</div> -->
 		<!-- admin only - users table -->
-		<div class="flex flex-col mt-5">
+		<!-- <div class="flex flex-col mt-5">
 			<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 					<div
@@ -135,17 +135,17 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- end table -->
 
-		<div class="flex justify-between mt-10 items-baseline">
-			<div class="text-2xl text-bluegray-700">Applicants</div>
-			<button
+		<div class="flex justify-end mt-10 items-baseline">
+			<!-- <div class="text-2xl text-bluegray-700">People</div> -->
+			<router-link
+				to="/people/create"
 				class="btn-primary p-2 uppercase flex items-center text-sm text-bluegray-050"
+				><user-plus-icon size="1.25x" class="mr-1"></user-plus-icon> New
+				Applicant</router-link
 			>
-				<user-plus-icon size="1.25x" class="mr-1"></user-plus-icon>
-				New Applicant
-			</button>
 		</div>
 		<!-- people table -->
 		<div class="flex flex-col mt-5">

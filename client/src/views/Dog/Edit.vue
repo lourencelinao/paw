@@ -1,183 +1,170 @@
 <template>
-	<div class="lg:px-48 md:px-32 xl:px-64">
-		<div class="text-bluegray-700 text-2xl border-b-2 border-bluegray-200 pb-3">
-			Edit
-		</div>
-
-		<!-- input fields -->
-
-		<div class="mt-5 min-w-full">
-			<form action="">
-
-                <!-- name -->
-				<div class="grid grid-cols-1 lg:grid-cols-2 sm:gap-4 gap-y-4">
-                    <div>
-					<div class="text-xl text-bluegray-700">Name</div>
-					<input
-						type="text"
-						name=""
-						id=""
-						class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+	<div>
+		<div class="grid grid-cols-1 my-12">
+			<div class="flex">
+				<div class="w-1/5 mx-auto">
+					<img
+						src="https://ourfunnylittlesite.com/wp-content/uploads/2018/07/1-4.jpg"
+						alt=""
+						class="rounded-full shadow-md"
 					/>
 				</div>
+				<div class="w-2/3 bg-white rounded-md shadow-md">
+					<div class="grid grid-cols-2 gap-4 p-5 text-bluegray-700">
+						<div>
+							<div class="text-sm text-bluegray-500">Name</div>
+							<!-- <div class="text-2xl">Maya</div> -->
+							<input
+								type="text"
+								class="w-1/2 px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white"
+							/>
+						</div>
 
-                <!-- breed -->
-				<div>
-					<div class="text-xl text-bluegray-700">Breed</div>
-					<input
-						type="text"
-						name=""
-						id=""
-						class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-					/>
-				</div>
+						<div>
+							<div class="text-sm text-bluegray-500">ID</div>
+							<div class="text-2xl">42069</div>
+						</div>
 
-                <!-- date of birth -->
-				<div>
-					<div class="text-xl text-bluegray-700">Date of Birth</div>
-					<input
-						type="date"
-						name=""
-						id=""
-						class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-					/>
-				</div>
+						<div>
+							<div class="text-sm text-bluegray-500">Breed</div>
+							<input
+								type="text"
+								class="w-1/2 px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white"
+							/>
+						</div>
 
-                <!-- sex -->
-				<div>
-					<div class="text-xl text-bluegray-700">Sex</div>
-					<select
-						name=""
-						id=""
-						class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-					>
-						<option value="">Male</option>
-						<option value="">Female</option>
-					</select>
-				</div>
+						<div>
+							<div class="text-sm text-bluegray-500">Sex</div>
+							<!-- <div class="text-2xl">Female</div> -->
+							<select
+								name=""
+								id=""
+								class="w-1/2 px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white w-1/2"
+							>
+								<option value="">Male</option>
+								<option value="">Female</option>
+							</select>
+						</div>
 
-                <!-- weight -->
-				<div>
-					<div class="text-xl text-bluegray-700">Weight in kg</div>
-					<input
-						type="number"
-						name=""
-						id=""
-						step="0.01"
-						class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-					/>
-				</div>
-                
-                <!-- marks -->
-				<div>
-					<div class="text-xl text-bluegray-700">Marks</div>
-					<input
-						type="text"
-						name=""
-						id=""
-						class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-					/>
-				</div>
+						<div>
+							<div class="text-sm text-bluegray-500">Date of Birth</div>
+							<input
+								type="date"
+								class="w-1/2 px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white"
+							/>
+						</div>
 
-                <!-- color -->
-				<div>
-					<div class="text-xl text-bluegray-700">Color/s</div>
-					<input
-						type="text"
-						name=""
-						id=""
-						class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-					/>
-				</div>
+						<div>
+							<div class="text-sm text-bluegray-500">Age</div>
+							<div class="text-2xl">69</div>
+						</div>
 
-                <!-- status -->
-				<div>
-					<div class="text-xl text-bluegray-700">Status</div>
-					<select
-						name=""
-						id=""
-						class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-					>
-						<option value="">Active</option>
-						<option value="">Inactive</option>
-						<option value="">Recuperating</option>
-						<option value="">Transferred</option>
-						<option value="">Healthy</option>
-					</select>
-				</div>
+						<div>
+							<div class="text-sm text-bluegray-500">Status</div>
+							<select
+								name=""
+								id=""
+								class="w-1/2 px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white w-1/2"
+							>
+								<option value="">Adopted</option>
+								<option value="">Inactive</option>
+								<option value="">Recuperating</option>
+								<option value="">Transferred</option>
+								<option value="">Healthy</option>
+							</select>
+						</div>
 
-                <!-- aggressive -->
-				<div>
-					<div class="text-xl text-bluegray-700">Aggressive?</div>
-					<select
-						name=""
-						id=""
-						class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-					>
-						<option value="">No</option>
-						<option value="">Yes</option>
-					</select>
-				</div>
+						<div>
+							<div class="text-sm text-bluegray-500">Foster Parent</div>
+							<select
+								name=""
+								id=""
+								class="w-1/2 px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white w-1/2"
+							>
+								<option value="">James Charles</option>
+								<option value="">Shane Dawson</option>
+							</select>
+						</div>
+					</div>
 
-                <!-- trained -->
-				<div>
-					<div class="text-xl text-bluegray-700">Trained?</div>
-					<select
-						name=""
-						id=""
-						class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-					>
-						<option value="">No</option>
-						<option value="">Yes</option>
-					</select>
-				</div>
-                </div>
-                
-                <!-- description -->
-				<div class="mt-4">
-					<div class="text-xl text-bluegray-700">Description</div>
-					<textarea
-						name=""
-						id=""
-						class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-					></textarea>
-				</div>
+					<div class="px-5">
+						<hr class="border-bluegray-200" />
+					</div>
 
-                <!-- file upload -->
-				<div class="mt-4">
-					<div class="text-bluegray-700">
-						<input id="fileUpload" type="file" hidden multiple />
-						<button
-							@click="chooseFiles()"
-							class="w-full flex justify-center items-center px-4 py-4 rounded border-2 border-bluegray-700 border-dashed"
-						>
-							<upload-icon size="1.5x" class="mr-2"></upload-icon>
-							Upload Images
-						</button>
+					<div>
+						<div class="p-5 text-bluegray-700">
+							<div class="text-2xl">Additional Info</div>
+
+							<div class="flex mt-3">
+								<div class="">
+									<div class="text-sm text-bluegray-500">Weight</div>
+									<input
+										type="number"
+										step="0.01"
+										class="w-2/3 px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white"
+									/>
+								</div>
+								<div>
+									<div class="text-sm text-bluegray-500">Color</div>
+									<input
+										type="text"
+										class="w-2/3 px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white"
+									/>
+								</div>
+								<div>
+									<div class="text-sm text-bluegray-500">Marks</div>
+									<input
+										type="text"
+										class="w-2/3 px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white"
+									/>
+								</div>
+
+								<div class="flex space-x-5">
+									<div>
+										<div class="text-sm text-bluegray-500">Aggressive?</div>
+										<select
+											name=""
+											id=""
+											class="px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white"
+										>
+											<option value="">No</option>
+											<option value="">Yes</option>
+										</select>
+									</div>
+									<div>
+										<div class="text-sm text-bluegray-500">Trained?</div>
+										<select
+											name=""
+											id=""
+											class="px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white"
+										>
+											<option value="">No</option>
+											<option value="">Yes</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="text-sm text-bluegray-500 mt-3">Description</div>
+							<textarea
+								name=""
+								id=""
+								class="px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white w-full"
+							></textarea>
+							<div class="flex justify-end mt-2 space-x-2">
+								<button class="btn-secondary px-4 py-2">Cancel</button>
+								<button class="btn-primary px-4 py-2">Save</button>
+							</div>
+						</div>
 					</div>
 				</div>
-
-				<div class="flex justify-end space-x-3 mt-5">
-                    <button class="btn-secondary px-4 py-2">Cancel</button>
-					<button class="btn-primary px-4 py-2">Edit</button>
-				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import { UploadIcon } from "vue-feather-icons";
-	export default {
-		components: {
-			UploadIcon,
-		},
-		methods: {
-			chooseFiles() {
-				document.getElementById("fileUpload").click();
-			},
-		},
-	};
+	export default {};
 </script>
 
 <style>

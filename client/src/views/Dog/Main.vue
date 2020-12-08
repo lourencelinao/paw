@@ -105,7 +105,7 @@
 				to="/dogs/create"
 				class="btn-primary p-2 uppercase flex items-center text-sm text-bluebluegray-050"
 			>
-				<plus-icon size="1.5x" class="mr-1"></plus-icon>
+				<plus-icon size="1.25x" class="mr-1"></plus-icon>
 				New Dog
 			</router-link>
 		</div>
@@ -188,10 +188,10 @@
 										<div
 											class="text-sm font-medium flex items-center space-x-3 text-sm"
 										>
-											<router-link to="dogs/edit" class="text-bluegray-700">
+											<router-link to="dogs/profile" class="text-bluegray-700">
 												<eye-icon size="1.5x" class="text-lg"></eye-icon>
 											</router-link>
-											<router-link to="" class="text-bluegray-700">
+											<router-link to="dogs/profile/edit" class="text-bluegray-700">
 												<edit-icon size="1.5x" class="text-lg"></edit-icon>
 											</router-link>
 											<router-link to="" class="text-bluegray-700">
@@ -241,10 +241,10 @@
 									</td> -->
 									<td class="px-6 py-4 whitespace-nowrap text-right">
 										<div class="font-medium flex items-center space-x-3">
-											<router-link to="dogs/edit" class="text-bluegray-700">
+											<router-link to="dogs/profile" class="text-bluegray-700">
 												<eye-icon size="1.5x" class="text-lg"></eye-icon>
 											</router-link>
-											<router-link to="" class="text-bluegray-700">
+											<router-link to="dogs/profile/edit" class="text-bluegray-700">
 												<edit-icon size="1.5x" class="text-lg"></edit-icon>
 											</router-link>
 											<router-link to="" class="text-bluegray-700">
@@ -296,10 +296,10 @@
 										<div
 											class="text-sm font-medium flex items-center space-x-3"
 										>
-											<router-link to="dogs/edit" class="text-bluegray-700">
+											<router-link to="dogs/profile" class="text-bluegray-700">
 												<eye-icon size="1.5x" class="text-lg"></eye-icon>
 											</router-link>
-											<router-link to="" class="text-bluegray-700">
+											<router-link to="dogs/profile/edit" class="text-bluegray-700">
 												<edit-icon size="1.5x" class="text-lg"></edit-icon>
 											</router-link>
 											<router-link to="" class="text-bluegray-700">

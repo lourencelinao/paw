@@ -60,9 +60,7 @@
 				<li
 					class="p-3 rounded-full md:rounded-md hover:bg-bluegray-800"
 					:class="{
-						'bg-bluegray-800 text-white': $router.currentRoute.path.includes(
-							'applications'
-						),
+						'bg-bluegray-800 text-white': $router.currentRoute.path === '/applications',
 					}"
 				>
 					<router-link
@@ -206,8 +204,8 @@
 			<!-- top nav end -->
 
 			<!-- main content -->
-			<div class="px-10 mb-16">
-				<router-view class="mt-10"></router-view>
+			<div class="px-10 mb-12">
+				<router-view class="mt-5"></router-view>
 			</div>
 			<!-- main content end -->
 		</div>

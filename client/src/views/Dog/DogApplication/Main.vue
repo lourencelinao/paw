@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="flex justify-end">
+		<!-- <div class="flex justify-end">
 			<router-link
 				to="/dogs/create"
 				class="btn-primary p-2 uppercase flex items-center text-sm text-bluebluegray-050"
@@ -8,7 +8,7 @@
 				<file-plus-icon size="1.25x" class="mr-1"></file-plus-icon>
 				New Application
 			</router-link>
-		</div>
+		</div> -->
 		<!-- table -->
 		<div class="flex flex-col mt-5">
 			<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
