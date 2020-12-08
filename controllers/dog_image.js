@@ -11,7 +11,7 @@ const addDog_image = (req, res) => {
 const deleteDog_image = (req, res) => {
     let sql = `UPDATE dog_image 
                 SET table_status = 'Deleted', deleted = now() 
-                WHERE dog_image_id = '${req.body.dog_image_id}'`;
+                WHERE dog_image_id = ${req.params.id}`;
     con.query(sql,(err, result)=>{
         if(err) throw err;
     });

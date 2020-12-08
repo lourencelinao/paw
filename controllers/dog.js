@@ -42,7 +42,7 @@ const updateDog = (req, res) => {
                     status = '${req.body.status}', 
                     description = '${req.body.description}', 
                     updated = now() 
-                WHERE dog_id = '${req.body.dog_id}'`;
+                WHERE dog_id = ${req.params.id}`;
     con.query(sql,(err, result)=>{
        if(err) throw err;
     });
@@ -51,7 +51,7 @@ const updateDog = (req, res) => {
 const deleteDog = (req, res) => {
     let sql = `UPDATE dog 
                 SET table_status = 'Deleted', deleted = now() 
-                WHERE dog_id = ${req.body.dog_id}`;
+                WHERE dog_id = ${req.params.id}`;
     con.query(sql,(err, result)=>{
         if(err) throw err;
     });
