@@ -10,6 +10,6 @@ const {
 } = require("../../controllers/dog_image");
 
 router.post('/addDog_image', addDog_image);
-router.post('/deleteDog_image', deleteDog_image);
+router.delete('/:id', deleteDog_image);
 
-module.exports = router
+module.exports = router;

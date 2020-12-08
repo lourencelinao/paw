@@ -9,6 +9,6 @@ const {
 
 router.get('/', getAdopted_outtake);
 router.post('/addDog', addAdopted_outtake);
-router.post('/deleteDog', deleteAdopted_outtake);
+router.delete('/:id', deleteAdopted_outtake);
 
-module.exports = router
+module.exports = router;
