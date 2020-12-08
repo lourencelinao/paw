@@ -150,7 +150,7 @@ create table vaccination(
 create table intake(
 	intake_id int auto_increment,
 	dog_id int NOT NULL,
-	intakeable_type enum('Transferee', 'Surrendered', 'Rescued'),
+	intakeable_type enum('Transferee', 'Surrendered', 'Rescued') NOT NULL,
 	health_condition text NOT NULL,
 	table_status enum('Active', 'Deleted') DEFAULT 'Active',
 	created datetime DEFAULT now(),
