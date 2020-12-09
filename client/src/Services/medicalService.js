@@ -1,5 +1,5 @@
 const axios = require('axios')
-const url="http://localhost:3000/api/intake/"
+const url="http://localhost:3000/api/medical/"
 
 class medicalService{
     static getMedical(){
