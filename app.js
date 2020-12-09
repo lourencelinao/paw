@@ -18,6 +18,10 @@ app.use("/api/transferee",require("./routes/api/transferee_intake"))
 app.use("/api/medicalRec",require("./routes/api/medical_record"))
 app.use("/api/intake",require("./routes/api/intake"))
 
+
+app.get('/',(req,res)=>{
+    res.send("<h1>Hello World</h1>");
+});
 // routes below are protected, meaning it needs authentication and authorization
 // app.use('/api',protect)
 
