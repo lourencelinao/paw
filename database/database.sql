@@ -25,7 +25,7 @@ create table dog(
 create table dog_image(		
 	dog_image_id int auto_increment,
 	dog_id int NOT NULL,
-	image blob NOT NULL, 
+	image varchar(256) NOT NULL, 
 	table_status enum('Active', 'Deleted') DEFAULT 'Active',
 	created datetime DEFAULT now(),
 	deleted datetime,
@@ -56,7 +56,7 @@ create table person (
 create table person_image(
 	person_image_id int auto_increment,
 	person_id int,
-	image blob not null,
+	image varchar(256) not null,
 	table_status enum('Active', 'Deleted') DEFAULT 'Active',
 	created DATETIME DEFAULT now(),
 	deleted DATETIME,
