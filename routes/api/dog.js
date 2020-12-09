@@ -10,7 +10,7 @@ const {
 } = require("../../controllers/dog");
 
 router.get('/', getDog);
-router.post('/addDog', addDog);
+router.post('/', addDog);
 router.put('/:id', updateDog);
 router.delete('/:id', deleteDog);
 

@@ -7,7 +7,7 @@
 		<!-- input fields -->
 
 		<div class="mt-5 min-w-full">
-			<form action="">
+			<form @submit.prevent="postMedicalRecord">
 				<!-- name -->
 				<div class="grid grid-cols-1 lg:grid-cols-2 sm:gap-4 gap-y-4">
 					<div>
@@ -16,6 +16,7 @@
 							type="text"
 							list="clinic"
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="medical.clinic"
 						/>
 						<datalist id="clinic" class="w-full">
 							<option>Paws and Claws</option>
@@ -29,6 +30,7 @@
 							type="text"
 							list="veterinarian"
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="medical.veterinarian_id"
 						/>
 						<datalist id="veterinarian" class="w-full">
 							<option>Johnny Sins</option>
@@ -42,6 +44,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="medical.description"
 						/>
 					</div>
 
@@ -52,6 +55,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="medical.diagnosis"
 						/>
 					</div>
 
@@ -62,6 +66,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="medical.test_performed"
 						/>
 					</div>
 
@@ -72,6 +77,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="medical.action"
 						/>
 					</div>
 
@@ -82,6 +88,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="medical.medication"
 						/>
 					</div>
 
@@ -92,6 +99,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="medical.comments"
 						/>
 					</div>
 				</div>
@@ -110,6 +118,21 @@
 	export default {
 		components: {
 			UploadIcon,
+		},
+		data(){
+			return{
+				medical: {
+					dog_id: '',
+					clinic_id: '',
+					vet_id: '',
+					description: '',
+					diagnosis: '',
+					test_performed: '',
+					action: '',
+					medications: '',
+					comment: ''
+				}
+			}
 		},
 		methods: {
 			chooseFiles() {

@@ -21,6 +21,9 @@ import DogIntakeOuttakeMain from '../views/Dog/IntakeOuttake/Main.vue'
 import DogApplicationMain from '../views/Dog/DogApplication/Main.vue'
 
 import ApplicationMain from '../views/Application/Main.vue'
+import AdoptionApplicationShow from '../views/Application/AdoptionApplicationShow.vue'
+import SurrenderApplicationShow from '../views/Application/SurrenderApplicationShow.vue'
+import VolunteerApplicationShow from '../views/Application/VolunteerApplicationShow.vue'
 
 // person
 import PeopleMain from '../views/People/Main.vue'
@@ -28,17 +31,25 @@ import ApplicantCreate from '../views/People/Applicant/Create.vue'
 
 import UserCreate from '../views/People/User/Create.vue'
 
+import Profile from '../views/People/Profile.vue'
+
+import Shelter from '../views/Shelter.vue'
+
+import firebase from 'firebase/app'
+import 'firebase/auth'
+
 Vue.use(VueRouter)
 
 const routes = [
 	{
 		path: '/',
-		name: 'Home',
 		component: Home,
+		meta: { loginAuthenticated: true },
 	},
 	{
 		path: '/dashboard',
 		component: Main,
+		meta: { requiresAuth: true },
 		children: [
 			{
 				path: '',
@@ -49,6 +60,7 @@ const routes = [
 	{
 		path: '/dogs',
 		component: Main,
+		meta: { requiresAuth: true },
 		children: [
 			{
 				path: '',
@@ -64,13 +76,13 @@ const routes = [
 				children: [
 					{
 						path: '',
-						component: DogProfile
+						component: DogProfile,
 					},
 					{
 						path: 'edit',
 						component: DogEdit,
 					},
-				]
+				],
 			},
 			{
 				path: 'medical',
@@ -78,18 +90,17 @@ const routes = [
 				children: [
 					{
 						path: '',
-						component: DogMedicalMain
+						component: DogMedicalMain,
 					},
 					{
 						path: 'create',
-						component: DogMedicalCreate
+						component: DogMedicalCreate,
 					},
 					{
 						path: 'vaccine/create',
-						component: DogMedicalVaccineCreate
+						component: DogMedicalVaccineCreate,
 					},
-					
-				]
+				],
 			},
 			{
 				path: 'intake-outtake',
@@ -97,9 +108,9 @@ const routes = [
 				children: [
 					{
 						path: '',
-						component: DogIntakeOuttakeMain
-					}
-				]
+						component: DogIntakeOuttakeMain,
+					},
+				],
 			},
 			{
 				path: 'applications',
@@ -107,26 +118,43 @@ const routes = [
 				children: [
 					{
 						path: '',
-						component: DogApplicationMain
-					}
-				]
-				
-			}
+						component: DogApplicationMain,
+					},
+					
+				],
+			},
 		],
 	},
 	{
 		path: '/applications',
 		component: Main,
+		meta: { requiresAuth: true },
 		children: [
 			{
 				path: '',
 				component: ApplicationMain,
+			},
+			{
+				path: '/volunteer/:id',
+				name: 'VolunteerApplicationShow',
+				component: VolunteerApplicationShow
+			},
+			{
+				path: '/adoption/:id',
+				name: 'AdoptionApplicationShow',
+				component: AdoptionApplicationShow
+			},
+			{
+				path: '/surrender/:id',
+				name: 'SurrenderApplicationShow',
+				component: SurrenderApplicationShow
 			},
 		],
 	},
 	{
 		path: '/people',
 		component: Main,
+		meta: { requiresAuth: true },
 		children: [
 			{
 				path: '',
@@ -138,8 +166,8 @@ const routes = [
 			},
 			{
 				path: 'create',
-				component: ApplicantCreate
-			}
+				component: ApplicantCreate,
+			},
 		],
 	},
 	{
@@ -151,12 +179,53 @@ const routes = [
 		component: () =>
 			import(/* webpackChunkName: "about" */ '../views/About.vue'),
 	},
+	{
+		path: '/profile',
+		component: Main,
+		meta: { requiresAuth: true },
+		children: [
+			{
+				path: '',
+				component: Profile,
+			},
+		],
+	},
+	{
+		path: '/shelter',
+		component: Main,
+		meta: { requiresAuth: true },
+		children: [
+			{
+				path: '',
+				component: Shelter,
+			},
+		],
+	},
 ]
 
 const router = new VueRouter({
 	mode: 'history',
 	base: process.env.BASE_URL,
 	routes,
+})
+
+router.beforeEach((to, from, next) => {
+	const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
+	const loginAuthenticated = to.matched.some(
+		(record) => record.meta.loginAuthenticated
+	)
+	const userAuthenticated = firebase.auth().currentUser
+
+	if (requiresAuth && !userAuthenticated) {
+		// will redirect to login if user tries to access protected routes
+		next('/')
+	} else if (loginAuthenticated && userAuthenticated) {
+		// will redirect to dashboard when an authenticated user tries to access login page
+		next('/dashboard')
+	} else {
+		//will proceed to the protected route since the user is authenticated
+		next()
+	}
 })
 
 export default router

@@ -17,6 +17,7 @@ app.use("/api/rescued", require("./routes/api/rescued_intake"));
 app.use("/api/transferee",require("./routes/api/transferee_intake"))
 app.use("/api/medicalRec",require("./routes/api/medical_record"))
 app.use("/api/intake",require("./routes/api/intake"))
+app.use("/api/dogs", require('./routes/api/dog'))
 
 // routes below are protected, meaning it needs authentication and authorization
 // app.use('/api',protect)

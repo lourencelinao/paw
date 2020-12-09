@@ -196,7 +196,15 @@
 </template>
 
 <script>
-	export default {};
+	import { EditIcon, EyeIcon, TrashIcon, FilePlusIcon } from "vue-feather-icons";
+	export default {
+		components: {
+			EditIcon,
+			EyeIcon,
+			TrashIcon,
+			FilePlusIcon,
+		},
+	};
 </script>
 
 <style>

@@ -7,7 +7,7 @@
 		<!-- input fields -->
 
 		<div class="mt-5 min-w-full">
-			<form action="">
+			<form @submit.prevent="postApplicant">
 				<!-- name -->
 				<div class="grid grid-cols-1 lg:grid-cols-2 sm:gap-4 gap-y-4">
 
@@ -18,6 +18,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="applicant.firstname"
 						/>
 					</div>
 
@@ -29,6 +30,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="applicant.middle_initial"
 						/>
 					</div>
 
@@ -40,6 +42,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="applicant.lastname"
 						/>
 					</div>
 
@@ -51,6 +54,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="applicant.contact_number"
 						/>
 					</div>
 
@@ -62,6 +66,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="applicant.email"
 						/>
 					</div>
 
@@ -73,6 +78,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="applicant.birthdate"
 						/>
 					</div>
 
@@ -83,6 +89,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="applicant.sex"
 						>
 							<option value="">Male</option>
 							<option value="">Female</option>
@@ -97,6 +104,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="applicant.address_1"
 						/>
 					</div>
 
@@ -108,6 +116,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="applicant.address_2"
 						/>
 					</div>
 
@@ -119,6 +128,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
+							v-model="applicant.city"
 						/>
 					</div>
 
@@ -138,6 +148,22 @@
 	export default {
 		components: {
 			UploadIcon,
+		},
+		data(){
+			return{
+				applicant: {
+					firstname: '',
+					middle_initial: '',
+					lastname: '',
+					contact_number: '',
+					email: '',
+					birthdate: '',
+					sex: '',
+					address_1: '',
+					address_2: '',
+					city: ''
+				}
+			}
 		},
 		methods: {
 			chooseFiles() {

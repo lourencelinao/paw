@@ -1,3 +1,4 @@
+const colors = require('tailwindcss/colors')
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
@@ -22,7 +23,8 @@ module.exports = {
           '700': '#334E68',
           '800': '#243B53',
           '900': '#102A43',
-        }
+        },
+        orange: colors.orange
       }
     },
   },

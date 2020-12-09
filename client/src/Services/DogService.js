@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const url = 'http://localhhost:3000/api/items/'
+const url = 'http://localhhost:3000/api/dogs/'
 
 class DogService {
 	static getDogs() {
