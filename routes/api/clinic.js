@@ -8,7 +8,7 @@ const {
 } = require("../../controllers/clinic");
 
 router.get('/', getClinics);
-router.post('/addClinic', addClinic);
-router.post('/deleteClinic', deleteClinic);
+router.post('/', addClinic);
+router.delete('/', deleteClinic);
 
 module.exports = router

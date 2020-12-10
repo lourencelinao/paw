@@ -13,37 +13,37 @@
 					<div class="grid grid-cols-2 gap-4 p-5 text-bluegray-700">
 						<div>
 							<div class="text-sm text-bluegray-500">Name</div>
-							<div class="text-2xl">Maya</div>
+							<div class="text-2xl">{{ dog[0].dog_name }}</div>
 						</div>
 
 						<div>
 							<div class="text-sm text-bluegray-500">ID</div>
-							<div class="text-2xl">42069</div>
+							<div class="text-2xl">{{ dog[0].dog_id }}</div>
 						</div>
 
 						<div>
 							<div class="text-sm text-bluegray-500">Breed</div>
-							<div class="text-2xl">Samoyed</div>
+							<div class="text-2xl">{{ dog[0].breed }}</div>
 						</div>
 
 						<div>
 							<div class="text-sm text-bluegray-500">Sex</div>
-							<div class="text-2xl">Female</div>
+							<div class="text-2xl">{{ dog[0].sex }}</div>
 						</div>
 
 						<div>
 							<div class="text-sm text-bluegray-500">Date of Birth</div>
-							<div class="text-2xl">4/20/69</div>
+							<div class="text-2xl">{{ moment(dog[0].birthday) }}</div>
 						</div>
 
 						<div>
 							<div class="text-sm text-bluegray-500">Age</div>
-							<div class="text-2xl">69</div>
+							<div class="text-2xl">{{ getAge(dog[0].birthday) }}</div>
 						</div>
 
 						<div>
 							<div class="text-sm text-bluegray-500">Status</div>
-							<div class="text-2xl">Adopted</div>
+							<div class="text-2xl">{{ dog[0].status }}</div>
 						</div>
 
 						<div>
@@ -63,32 +63,29 @@
 							<div class="flex justify-between mt-3">
 								<div>
 									<div class="text-sm text-bluegray-500">Weight</div>
-									<div class="text-2xl">69 kgs</div>
+									<div class="text-2xl">{{ dog[0].weight }} kgs</div>
 								</div>
 								<div>
 									<div class="text-sm text-bluegray-500">Color</div>
-									<div class="text-2xl">White</div>
+									<div class="text-2xl">{{ dog[0].color }}</div>
 								</div>
 								<div>
 									<div class="text-sm text-bluegray-500">Marks</div>
-									<div class="text-2xl">None</div>
+									<div class="text-2xl">{{ dog[0].marks }}</div>
 								</div>
 								<div>
 									<div class="text-sm text-bluegray-500">Aggressive?</div>
-									<div class="text-2xl">No</div>
+									<div class="text-2xl">{{ dog[0].aggressive }}</div>
 								</div>
 								<div>
 									<div class="text-sm text-bluegray-500">Trained?</div>
-									<div class="text-2xl">No</div>
+									<div class="text-2xl">{{ dog[0].trained }}</div>
 								</div>
 							</div>
 
 							<div class="text-sm text-bluegray-500 mt-3">Description</div>
 							<p class="text-xl">
-								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab
-								quis laboriosam dolor voluptatem aspernatur? In earum iusto
-								laborum soluta harum omnis, itaque pariatur, quos quaerat,
-								beatae excepturi rem adipisci magni?
+								{{ dog[0].description }}
 							</p>
 						</div>
 					</div>
@@ -99,7 +96,44 @@
 </template>
 
 <script>
-	export default {};
+	import DogService from "../../../Services/DogService";
+	import moment from "moment";
+	export default {
+		data() {
+			return {
+				dog: "",
+			};
+		},
+		methods: {
+			async getDog() {
+				try {
+					this.dog = await DogService.getDog(this.$route.params.id);
+					console.log(this.dog);
+				} catch (err) {
+					console.error(err.message);
+				}
+			},
+			moment(date) {
+				return moment(date).format("L");
+			},
+			getAge(date) {
+				var a = moment(moment(), "YYYY-MM-DD");
+				var b = moment(date, "YYYY-MM-DD");
+
+				let years = a.diff(b, "years")
+				if(years === 0){
+					years = a.diff(b, "months") + ' months old'
+				}else{
+					years = a.diff(b, "years") + ' years old';
+				}
+
+				return years
+			},
+		},
+		created() {
+			this.getDog();
+		},
+	};
 </script>
 
 <style>

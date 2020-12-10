@@ -3,12 +3,16 @@ const router = express.Router()
 
 const {
     getVaccines,
+    getVaccine,
     addVaccine,
-    deleteVaccine
+    deleteVaccine,
+    patchVaccine
 } = require("../../controllers/vaccination");
 
-router.get('/', getVaccines);
-router.post('/addVaccine', addVaccine);
-router.post('/deleteVaccine', deleteVaccine);
+router.get('/:id', getVaccines);
+router.get('/:id/getVaccine', getVaccine);
+router.patch('/:id', patchVaccine);
+router.post('/', addVaccine);
+router.post('/', deleteVaccine);
 
 module.exports = router

@@ -1,15 +1,35 @@
-const connection = require('../../database/database');
+const connection = require('../database/database');
 
 const getVaccines = (req, res) => {
-    connection.query("SELECT * FROM vaccination WHERE table_status = 'Active'", (err, result)=>{
+    // let sql = `SELECT * FROM vaccination WHERE table_status = 'Active' AND dog_id = ${req.params.id}`
+    let sql = `SELECT vaccine.vaccination_id, vaccine.dog_id, vaccine.clinic_id, vaccine.vaccine_name, vaccine.created, clinic.name FROM vaccination as vaccine LEFT JOIN clinic ON vaccine.clinic_id = clinic.clinic_id WHERE vaccine.dog_id = ${req.params.id}`
+    connection.query(sql, (err, result)=>{
         if(result){
             res.send(result);
         }
     })
 }
 
+const getVaccine = (req, res) => {
+    // let sql = `SELECT * FROM vaccination WHERE table_status = 'Active' AND dog_id = ${req.params.id}`
+    let sql = `SELECT vaccine.vaccination_id, vaccine.dog_id, vaccine.clinic_id, vaccine.vaccine_name, vaccine.created, clinic.name FROM vaccination as vaccine LEFT JOIN clinic ON vaccine.clinic_id = clinic.clinic_id WHERE vaccine.vaccination_id = ${req.params.id}`
+    connection.query(sql, (err, result)=>{
+        if(err) throw err
+        res.send(result)
+    })
+}
+
+const patchVaccine = (req, res) => {
+    let sql = `UPDATE vaccination SET clinic_id = ${req.body.clinic_id}, vaccine_name = '${req.body.vaccine_name}' WHERE vaccination_id = ${req.params.id}`
+    connection.query(sql, (err, data) => {
+        if(err) throw err
+        res.send()
+    })
+}
+
+
 const addVaccine = (req, res) => {
-    connection.query("INSERT INTO vaccination (dog_id, clinic_id, vet_id, vaccine_name, table_status) VALUES ('"+req.body.dog_id+"','"+req.body.clinic_id+"','"+req.body.vet_id+"','"+req.body.vaccine_name+"','"+req.body.table_status+"')", (err, result)=>{
+    connection.query("INSERT INTO vaccination (dog_id, clinic_id, vaccine_name) VALUES ('"+req.body.dog_id+"','"+req.body.clinic_id+"','"+req.body.vaccine_name+"')", (err, result)=>{
         if(result){
             res.send(result);
         }
@@ -26,6 +46,8 @@ const deleteVaccine = (req, res) => {
 
 module.exports = {
     getVaccines,
+    getVaccine,
     addVaccine,
-    deleteVaccine
+    deleteVaccine,
+    patchVaccine
 }

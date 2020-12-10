@@ -6,10 +6,14 @@ const {
     getUser,
     addUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    updateUserEmail,
+    patchUserPassword
 } = require("../../controllers/user");
-router.get('/', getUser);
-router.post('/addUser', addUser);
+router.get('/:email', getUser);
+router.patch('/:id/updateUserEmail', updateUserEmail)
+router.patch('/:id/patchUserPassword', patchUserPassword)
+router.post('/', addUser);
 router.put('/:id', updateUser);
 router.delete('/:id', deleteUser);
 

@@ -14,7 +14,9 @@ import DogProfile from '../views/Dog/Profile/Profile.vue'
 
 import DogMedicalMain from '../views/Dog/Medical/Main.vue'
 import DogMedicalCreate from '../views/Dog/Medical/Create.vue'
+import DogMedicalEdit from '../views/Dog/Medical/Edit.vue'
 import DogMedicalVaccineCreate from '../views/Dog/Medical/VaccineCreate.vue'
+import DogMedicalVaccineEdit from '../views/Dog/Medical/VaccineEdit.vue'
 
 import DogIntakeOuttakeMain from '../views/Dog/IntakeOuttake/Main.vue'
 
@@ -34,6 +36,7 @@ import UserCreate from '../views/People/User/Create.vue'
 import Profile from '../views/People/Profile.vue'
 
 import Shelter from '../views/Shelter.vue'
+import ClinicCreate from '../views/Clinic/ClinicCreate.vue'
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -71,53 +74,70 @@ const routes = [
 				component: DogCreate,
 			},
 			{
-				path: 'profile',
+				path: ':id',
 				component: DogNav,
 				children: [
 					{
-						path: '',
+						path: 'profile',
+						name: 'DogProfile',
 						component: DogProfile,
 					},
 					{
 						path: 'edit',
+						name: 'DogEdit',
 						component: DogEdit,
 					},
 				],
 			},
 			{
-				path: 'medical',
+				path: ':id',
 				component: DogNav,
 				children: [
 					{
-						path: '',
+						path: 'medical',
+						name: 'DogMedicalMain',
 						component: DogMedicalMain,
 					},
 					{
-						path: 'create',
+						path: 'medical/create',
+						name: 'DogMedicalCreate',
 						component: DogMedicalCreate,
 					},
 					{
+						path: 'medical/:medical_id/edit',
+						name: 'DogMedicalEdit',
+						component: DogMedicalEdit,
+					},
+					{
 						path: 'vaccine/create',
+						name: 'VaccineCreate',
 						component: DogMedicalVaccineCreate,
+					},
+					{
+						path: 'vaccine/:vaccine_id/edit',
+						name: 'VaccineEdit',
+						component: DogMedicalVaccineEdit,
 					},
 				],
 			},
 			{
-				path: 'intake-outtake',
+				path: ':id',
 				component: DogNav,
 				children: [
 					{
-						path: '',
+						path: 'intake-outtake',
+						name: 'DogIntakeOuttakeMain',
 						component: DogIntakeOuttakeMain,
 					},
 				],
 			},
 			{
-				path: 'applications',
+				path: ':id',
 				component: DogNav,
 				children: [
 					{
-						path: '',
+						path: 'applications',
+						name: 'DogApplicationMain',
 						component: DogApplicationMain,
 					},
 					
@@ -201,6 +221,17 @@ const routes = [
 			},
 		],
 	},
+	{
+		path: '/clinic/create',
+		component: Main,
+		meta: { requiresAuth: true },
+		children: [
+			{
+				path: '',
+				component: ClinicCreate
+			}
+		]
+	}
 ]
 
 const router = new VueRouter({

@@ -590,7 +590,7 @@
 						v = 0;
 					while (t < temp.length && v < this.volunteer.records.length) {
 						if (temp[t].createdTime > this.volunteer.records[v].createdTime) {
-							this.all.push(this.temp[t]);
+							this.all.push(temp[t]);
 							t++;
 						} else {
 							this.all.push(this.volunteer.records[v]);

@@ -3,20 +3,20 @@
 		<div
 			class="text-bluegray-700 text-2xl border-b-2 border-bluegray-200 pb-3 mt-5"
 		>
-			New Medical Record
+			Edit Medical Record
 		</div>
 
 		<!-- input fields -->
 
 		<div class="mt-5 min-w-full">
-			<form @submit.prevent="postMedicalRecord">
+			<form @submit.prevent="patchMedical">
 				<!-- name -->
 				<div class="grid grid-cols-1 lg:grid-cols-2 sm:gap-4 gap-y-4">
 					<div>
 						<div class="text-xl text-bluegray-700">Clinic</div>
 						<select
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-							v-model="medical.clinic_id"
+							v-model="medical[0].clinic_id"
 						>
 							<option v-for="(clinic, indx) in clinics" :key="indx" :value="clinic.clinic_id">{{ clinic.name }}</option>
 						</select>
@@ -52,7 +52,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-							v-model="medical.description"
+							v-model="medical[0].description"
 						/>
 					</div>
 
@@ -63,7 +63,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-							v-model="medical.diagnosis"
+							v-model="medical[0].diagnosis"
 						/>
 					</div>
 
@@ -74,7 +74,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-							v-model="medical.test_performed"
+							v-model="medical[0].test_performed"
 						/>
 					</div>
 
@@ -85,7 +85,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-							v-model="medical.action"
+							v-model="medical[0].action"
 						/>
 					</div>
 
@@ -96,7 +96,7 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-							v-model="medical.medications"
+							v-model="medical[0].medications"
 						/>
 					</div>
 				</div>
@@ -104,13 +104,13 @@
 					<div class="text-xl text-bluegray-700">Comments</div>
 					<textarea
 						class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-						v-model="medical.comment"
+						v-model="medical[0].comment"
 					></textarea>
 				</div>
 
 				<div class="flex justify-end space-x-3 mt-5">
 					<router-link :to="{ name: 'DogMedicalMain', params: { id: $route.params.id } }" class="btn-secondary px-4 py-2">Cancel</router-link>
-					<button class="btn-primary px-4 py-2">Create</button>
+					<button class="btn-primary px-4 py-2">Save</button>
 				</div>
 			</form>
 		</div>
@@ -154,32 +154,40 @@
 			};
 		},
 		methods: {
-			async postMedicalRecord() {
+			async patchMedical() {
 				try {
+                    console.log('test', this.medical[0])
 					if (
-						!this.medical.clinic_id ||
-						!this.medical.description ||
-						!this.medical.diagnosis ||
-						!this.medical.test_performed ||
-						!this.medical.action ||
-						!this.medical.medications ||
-						!this.medical.comment
+						!this.medical[0].clinic_id ||
+						!this.medical[0].description ||
+						!this.medical[0].diagnosis ||
+						!this.medical[0].test_performed ||
+						!this.medical[0].action ||
+						!this.medical[0].medications ||
+						!this.medical[0].comment
 					) {
 						this.failedToggle = true;
 						setTimeout(() => {
 							this.failedToggle = false;
 						}, 3000);
 					} else {
-						this.medical.dog_id = this.$route.params.id;
-						await MedicalService.postMedical(this.medical);
+                        this.medical[0].dog_id = this.$route.params.id;
+						await MedicalService.patchMedical(this.medical[0]);
 						this.successToggle = true;
 						setTimeout(() => {
 							this.successToggle = false;
 						}, 3000);
-						this.medical = "";
 					}
 				} catch (err) {
 					console.error(err.message);
+				}
+            },
+            async getMedical() {
+				try{
+					this.medical = await MedicalService.getMedical(this.$route.params.medical_id)
+					console.log(this.medical)
+				}catch(err){
+					console.error(err.message)
 				}
 			},
 			async getClinics() {
@@ -192,7 +200,8 @@
 			},
 		},
 		created() {
-			this.getClinics();
+            this.getClinics();
+            this.getMedical()
 		},
 	};
 </script>

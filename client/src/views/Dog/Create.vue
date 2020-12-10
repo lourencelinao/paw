@@ -54,8 +54,9 @@
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
 							v-model="dog.sex"
 						>
-							<option value="">Male</option>
-							<option value="">Female</option>
+						<option disabled value="">Please select one</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
 						</select>
 					</div>
 
@@ -105,11 +106,12 @@
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
 							v-model="dog.status"
 						>
-							<option value="">Adopted</option>
-							<option value="">Inactive</option>
-							<option value="">Recuperating</option>
-							<option value="">Transferred</option>
-							<option value="">Healthy</option>
+							<option disabled value="">Please select one</option>
+							<option value="Adopted">Adopted</option>
+							<option value="Inactive">Inactive</option>
+							<option value="Recuperating">Recuperating</option>
+							<option value="Transferred">Transferred</option>
+							<option value="Healthy">Healthy</option>
 						</select>
 					</div>
 
@@ -122,8 +124,9 @@
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
 							v-model="dog.aggressive"
 						>
-							<option value="">No</option>
-							<option value="">Yes</option>
+							<option disabled value="">Please select one</option>
+							<option value="No">No</option>
+							<option value="Yes">Yes</option>
 						</select>
 					</div>
 
@@ -136,8 +139,9 @@
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
 							v-model="dog.trained"
 						>
-							<option value="">No</option>
-							<option value="">Yes</option>
+							<option disabled value="">Please select one</option>
+							<option value="No">No</option>
+							<option value="Yes">Yes</option>
 						</select>
 					</div>
 				</div>
@@ -168,38 +172,49 @@
 				</div> -->
 
 				<div class="flex justify-end space-x-3 mt-5">
-					<button class="btn-secondary px-4 py-2">Cancel</button>
+					<router-link to="/dogs" class="btn-secondary px-4 py-2">Cancel</router-link>
 					<button class="btn-primary px-4 py-2">Create</button>
 				</div>
 			</form>
 		</div>
+		<transition name="fade">
+			<successful-modal v-if="successToggle">Success</successful-modal>
+		</transition>
+		<transition name="fade">
+			<failed-modal v-if="failedToggle">Something went wrong</failed-modal>
+		</transition>
 	</div>
 </template>
 
 <script>
 	import { UploadIcon, Tren } from "vue-feather-icons";
-	import DogService from '../../Services/DogService'
+	import DogService from "../../Services/DogService";
+	import SuccessfulModal from "../../components/SuccessfulModal";
+	import FailedModal from "../../components/FailedModal";
 	export default {
 		components: {
 			UploadIcon,
+			SuccessfulModal,
+			FailedModal,
 		},
-		data(){
-			return{
+		data() {
+			return {
 				dog: {
-					dog_name: '',
-			breed: '',
-			birthday: '',
-			sex: '',
-			weight: '',
-			color: '',
-			marks: '',
-			aggressive: '',
-			trained: '',
-			status: '',
-			table_status: '',
-			description: '',
-				}
-			}
+					dog_name: "",
+					breed: "",
+					birthday: "",
+					sex: "",
+					weight: "",
+					color: "",
+					marks: "",
+					aggressive: "",
+					trained: "",
+					status: "",
+					description: "",
+				},
+				successToggle: false,
+				failedToggle: false,
+			};
 		},
 		methods: {
 			// chooseFiles() {
@@ -207,16 +222,49 @@
 			// },
 
 			async postDog() {
-				// insert input error handling here
-				try{
-					await DogService.postDog(this.dog)
-				}catch(error) {
-					console.error(error.message)
+				try {
+					if (
+						!this.dog.dog_name ||
+						!this.dog.breed ||
+						!this.dog.birthday ||
+						!this.dog.sex ||
+						!this.dog.weight ||
+						!this.dog.color ||
+						!this.dog.marks ||
+						!this.dog.aggressive ||
+						!this.dog.trained ||
+						!this.dog.status ||
+						!this.dog.description
+					) {
+						//if at least one input is empty
+						console.log('Empty')
+						this.failedToggle = true;
+						setTimeout(() => {
+							this.failedToggle = false;
+						}, 3000);
+					} else {
+						await DogService.postDog(this.dog);
+						this.successToggle = true;
+						setTimeout(() => {
+							this.successToggle = false;
+						}, 3000);
+						this.dog = ""; // clear input fields
+					}
+					console.log(this.dog);
+				} catch (error) {
+					console.error(error.message);
 				}
-			}
+			},
 		},
 	};
 </script>
 
-<style>
+<style scoped>
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: opacity 0.5s;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+		opacity: 0;
+	}
 </style>

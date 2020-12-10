@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const url = 'http://localhhost:3000/api/dogs/'
+const url = 'http://localhost:3000/api/dogs/'
 
 class DogService {
 	static getDogs() {
@@ -11,7 +11,7 @@ class DogService {
 					.get(url)
 					.then((response) => {
 						data = response.data
-						response.data
+						resolve(data)
 					})
 					.catch((err) => console.error(err.message))
 			} catch (err) {
@@ -82,10 +82,9 @@ class DogService {
 		dog.breed = dog.breed.replace(/\'/g, "''")
 		dog.color = dog.color.replace(/\'/g, "''")
 		dog.marks = dog.marks.replace(/\'/g, "''")
-        dog.description = dog.description.replace(/\'/g, "''")
-        
+		dog.description = dog.description.replace(/\'/g, "''")
 
-        return axios.patch(`${url}${dog.id}`, {
+        return axios.patch(`${url}${dog.dog_id}`, {
             dog_name: dog.dog_name,
 			breed: dog.breed,
 			birthday: dog.birthday,
@@ -96,7 +95,6 @@ class DogService {
 			aggressive: dog.aggressive,
 			trained: dog.trained,
 			status: dog.status,
-			table_status: dog.table_status,
 			description: dog.description,
         })
     }

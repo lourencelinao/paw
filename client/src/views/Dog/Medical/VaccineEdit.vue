@@ -3,20 +3,20 @@
 		<div
 			class="text-bluegray-700 text-2xl border-b-2 border-bluegray-200 pb-3 mt-5"
 		>
-			New Vaccination Record
+			Edit Vaccination Record
 		</div>
 
 		<!-- input fields -->
 
 		<div class="mt-5 min-w-full">
-			<form @submit.prevent="postVaccine">
+			<form @submit.prevent="patchVaccine">
 				<!-- name -->
 				<div class="grid grid-cols-1 sm:gap-4 gap-y-4 w-1/2 mx-auto">
 					<div>
 						<div class="text-xl text-bluegray-700">Clinic</div>
 						<select
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-							v-model="vaccine.clinic_id"
+							v-model="vaccine[0].clinic_id"
 						>
 							<option
 								v-for="(clinic, indx) in clinics"
@@ -47,13 +47,13 @@
 							name=""
 							id=""
 							class="w-full px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
-							v-model="vaccine.vaccine_name"
+							v-model="vaccine[0].vaccine_name"
 						/>
 					</div>
 
 					<div class="flex justify-end space-x-3 mt-5">
 						<router-link class="btn-secondary px-4 py-2" :to="{ name: 'DogMedicalMain', params: { id: $route.params.id } }">Cancel</router-link>
-						<button class="btn-primary px-4 py-2">Create</button>
+						<button class="btn-primary px-4 py-2">Save</button>
 					</div>
 				</div>
 			</form>
@@ -82,11 +82,7 @@
 		data(){
 			return {
 				clinics: [],
-				vaccine: {
-					dog_id: '',
-					clinic_id: '',
-					vaccine_name: ''
-				},
+				vaccine: [],
 				successToggle: false,
 				failedToggle: false,
 			}
@@ -100,21 +96,31 @@
 					console.error(err.message);
 				}
 			},
-			async postVaccine(){
+			async getVaccine() {
+				try {
+                    this.vaccine = await VaccinationService.getVaccination(this.$route.params.vaccine_id);
+					console.log('vaccine', this.vaccine);
+				} catch (err) {
+					console.error(err.message);
+				}
+			},
+			async patchVaccine(){
 				try{
-					if(!this.vaccine.clinic_id || !this.vaccine.vaccine_name){
+					if(!this.vaccine[0].clinic_id || !this.vaccine[0].vaccine_name){
+                        console.log('error')
 						this.failedToggle = true;
 						setTimeout(() => {
 							this.failedToggle = false;
 						}, 3000);
 					}else{
-						this.vaccine.dog_id = this.$route.params.id
-						await VaccinationService.postVaccination(this.vaccine)
+                        // this.vaccine[0].dog_id = this.$route.params.id
+                        console.log('vaccine', this.vaccine[0])
+						await VaccinationService.patchVaccination(this.vaccine[0])
 						this.successToggle = true;
 						setTimeout(() => {
 							this.successToggle = false;
 						}, 3000);
-						this.vaccine = {};
+						// this.vaccine = {};
 					}
 				}catch(err){
 					console.error(err.message)
@@ -122,7 +128,8 @@
 			}
 		},
 		created() {
-			this.getClinics()
+            this.getClinics()
+            this.getVaccine()
 		}
 	};
 </script>

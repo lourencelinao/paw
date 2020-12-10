@@ -10,8 +10,13 @@ const getVet = (req,res) =>{
 };
 //insert
 const addVet = (req,res)=>{
-  let sql = `INSERT INTO veterinarian (person_id,clinic_id,table_status)
-             VALUES (${req.body.person_id},${req.body.clinic_id},${req.body.table_status})`;  
+  let sql = `INSERT INTO veterinarian (clinic_id, name, email, contact_number)
+             VALUES (${req.body.clinic_id}, '${req.body.name}', '${req.body.email}', '${req.body.contact_number}')`;  
+
+             conn.query(sql, (err, response) => {
+               if(err) throw err
+               res.status(200).send()
+             })
 };
 
 //update

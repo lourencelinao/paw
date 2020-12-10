@@ -1,3 +1,4 @@
+
 create database dogshelter;
 use dogshelter;
 
@@ -84,7 +85,6 @@ create table clinic (
 	clinic_id int auto_increment,
 	name varchar(128) NOT NULL,
 	address1 varchar(256) NOT NULL,
-	address2 varchar(256),
 	city varchar(50) NOT NULL,
 	province varchar(50) NOT NULL,
 	contact_number varchar(11) NOT NULL,
@@ -99,15 +99,16 @@ create table clinic (
 
 create table veterinarian (
 	vet_id int auto_increment,
-	person_id int NOT NULL,
 	clinic_id int,
+	name varchar(64) not null,
+	email varchar(64) not null,
+	contact_number varchar(64),
 	table_status enum('Active', 'Deleted') DEFAULT 'Active',
 	created datetime DEFAULT now(),
 	deleted datetime, 
 	
 	constraint pk_vet primary key(vet_id),
-	constraint fk1_vet foreign key(clinic_id) references clinic(clinic_id),
-	constraint fk2_vet foreign key(person_id) references person(person_id)
+	constraint fk1_vet foreign key(clinic_id) references clinic(clinic_id)
 );
 
 
@@ -115,7 +116,6 @@ create table medical_record(
 	medical_id int auto_increment,
 	dog_id int NOT NULL,
 	clinic_id int NOT NULL,
-	vet_id int NOT NULL,
 	description text NOT NULL,
 	diagnosis text NOT NULL,
 	test_performed text NOT NULL,
@@ -128,15 +128,13 @@ create table medical_record(
 
 	constraint pk_medical primary key(medical_id),
 	constraint fk1_medical foreign key(dog_id) references dog(dog_id),
-	constraint fk2_medical foreign key(clinic_id) references clinic(clinic_id),
-	constraint fk3_medical foreign key(vet_id) references veterinarian(vet_id)	
+	constraint fk2_medical foreign key(clinic_id) references clinic(clinic_id)
 );
 
 create table vaccination(
 	vaccination_id int auto_increment,
 	dog_id int,
 	clinic_id int,
-	vet_id int,
 	vaccine_name varchar(128),
 	table_status enum('Active', 'Deleted') DEFAULT 'Active',
 	created DATETIME DEFAULT now(),
@@ -144,8 +142,7 @@ create table vaccination(
 	
 	constraint pk_vaccination primary key(vaccination_id),
 	constraint fk1_vaccination foreign key(dog_id) references dog(dog_id),
-	constraint fk2_vaccination foreign key(clinic_id) references clinic(clinic_id),
-	constraint fk3_vaccination foreign key(vet_id) references veterinarian(vet_id)
+	constraint fk2_vaccination foreign key(clinic_id) references clinic(clinic_id)
 );
 
 create table intake(

@@ -1,8 +1,8 @@
 const axios = require('axios')
 
-const url = 'http://localhhost:3000/api/people/' 
+const url = 'http://localhost:3000/api/person/' 
 
-class peopleService{
+class PeopleService{
     static getPeople(){
         return new Promise((resolve,reject)=>{
             try{
@@ -11,6 +11,22 @@ class peopleService{
                     .get(url)
                     .then((response)=>{
                         data=response.data
+                    })
+                    .catch((err) => console.error(err.message))
+            }catch (err) {
+                reject(err)
+            }
+        })
+    }
+    static getPerson(id){
+        return new Promise((resolve,reject)=>{
+            try{
+                let data=[]
+                axios
+                    .get(`${url}${id}`)
+                    .then((response)=>{
+                        data=response.data
+                        resolve(data)
                     })
                     .catch((err) => console.error(err.message))
             }catch (err) {
@@ -41,6 +57,13 @@ class peopleService{
 
     }
 
+    static updatePersonEmail(email, person_id){
+        email = email.replace(/\'/g, "''")
+        return axios.patch(`${url}${person_id}/updatePersonEmail`, {
+            email_address: email
+        })
+    }
+
 
     static patchPeople(people){
         people.first_name=people.first_name.replace(/\'/g, "''")
@@ -68,4 +91,4 @@ class peopleService{
     }
 }
 
-module.exports=peopleService
+module.exports=PeopleService

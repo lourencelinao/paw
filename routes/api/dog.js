@@ -3,15 +3,17 @@ const router = express.Router();
 const { authRole } = require('../../middleware/auth');
 
 const {
+    getDogs,
     getDog,
     addDog,
     updateDog,
     deleteDog
 } = require("../../controllers/dog");
 
-router.get('/', getDog);
+router.get('/', getDogs);
+router.get('/:id', getDog);
 router.post('/', addDog);
-router.put('/:id', updateDog);
+router.patch('/:id', updateDog);
 router.delete('/:id', deleteDog);
 
 module.exports = router;

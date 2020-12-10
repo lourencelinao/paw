@@ -15,9 +15,12 @@ app.use("/api/user", require("./routes/api/user"));
 app.use("/api/surrendered", require("./routes/api/surrendered_intake"));
 app.use("/api/rescued", require("./routes/api/rescued_intake"));
 app.use("/api/transferee",require("./routes/api/transferee_intake"))
-app.use("/api/medicalRec",require("./routes/api/medical_record"))
+app.use("/api/medical",require("./routes/api/medical_record"))
 app.use("/api/intake",require("./routes/api/intake"))
 app.use("/api/dogs", require('./routes/api/dog'))
+app.use("/api/clinic", require('./routes/api/clinic'))
+app.use("/api/vaccine", require('./routes/api/vaccination'))
+app.use("/api/person", require('./routes/api/person'))
 
 
 app.get('/',(req,res)=>{

@@ -6,7 +6,7 @@ import './css/output.css' // css
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
-
+import UserService from './Services/UserService'
 Vue.config.productionTip = false
 
 const firebaseConfig = {
@@ -32,10 +32,27 @@ firebase.auth().onAuthStateChanged(async (firebaseUser) => {
     }).$mount('#app')    
   }
 
-  if(firebaseUser){
-    let user = []
-    if(!localStorage.id) {
-      // user service here
-    }
-  }
+  if (firebaseUser) {
+		let user = []
+		if (!localStorage.id) {
+      // console.log(firebaseUser.email)
+      user = await UserService.getUser(firebaseUser.email)
+      // console.log(user)
+      console.log(user)
+			localStorage.id = user[0].user_id
+      localStorage.password = user[0].password
+      console.log(localStorage)
+			// localStorage.firstname = user[0].firstname
+			// localStorage.lastname = user[0].lastname
+			// localStorage.email = user[0].email
+			// localStorage.position = user[0].position
+			// localStorage.contact = user[0].contact
+      // console.log(localStorage)
+      // console.log(localStorage.id)
+      console.log('id', localStorage.id)
+		}
+	} else {
+		localStorage.clear()
+		console.log(localStorage)
+	}
 })

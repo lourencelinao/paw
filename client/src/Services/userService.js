@@ -1,16 +1,17 @@
 const axios = require('axios')
 
-const url = 'http://localhhost:3000/api/user/' 
+const url = 'http://localhost:3000/api/user/' 
 
-class userService{
-    static getUser(){
+class UserService{
+    static getUser(email){
         return new Promise((resolve,reject)=>{
             try{
-                let Data=[]
+                let data=[]
                 axios
-                    .get(url)
+                    .get(`${url}${email}`)
                     .then((response)=>{
-                        data=response.data
+                        data = response.data
+                        resolve(data)
                     })
                     .catch((err) => console.error(err.message))
             }catch (err) {
@@ -20,30 +21,37 @@ class userService{
     }
 
     static postUser(user){
-        user.password=user.password.replace(/\'/g, "''")
+        user.email=user.email.replace(/\'/g, "''")
+        // user.password=user.password.replace(/\'/g, "''")
 
         return axios.post(url,{
-            user_type:user.user_type,
-            password:user.password,
-            table_status:user.table_status
+            user_type:user.role,
+            email: user.email
         })
 
     }
 
 
-    static patchUser(user){
-        user.password=user.password.replace(/\'/g, "''")
+    static patchUserEmail(email, user_id){
+        email = email.replace(/\'/g, "''")
 
-        return axios.patch(`${url}${user.id}`,{
-            user_type:user.user_type,
-            password:user.password,
-            table_status:user.table_status
+        return axios.patch(`${url}${user_id}/updateUserEmail`,{
+            email: email
         })
     }
+
+    static patchUserPassword(password, user_id){
+        password = password.replace(/\'/g, "''")
+
+        return axios.patch(`${url}${user_id}/patchUserPassword`,{
+            password: password
+        })
+    }
+
 
     static deleteUser(user){
         return axios.delete(`${url}${user.id}`)
     }
 }
 
-module.exports=userService
+module.exports=UserService
