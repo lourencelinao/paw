@@ -73,7 +73,7 @@
 		</div>
 
 		<div class="bg-white shadow rounded-lg mt-5 px-12 py-5">
-			<form @submit.prevent="updatePerson">
+			<form @submit.prevent="patchPerson">
 				<div class="mt-8 grid grid-cols-2 gap-5">
 					<!-- fistname -->
 					<div>
@@ -195,8 +195,30 @@
 			};
 		},
 		methods: {
-			async updatePerson() {
+			async patchPerson() {
 				try {
+					if (
+						!this.person[0].first_name ||
+						!this.person[0].middle_initial ||
+						!this.person[0].last_name ||
+						!this.person[0].birthdate ||
+						!this.person[0].contact_number ||
+						!this.person[0].address1 ||
+						!this.person[0].address2 ||
+						!this.person[0].city
+					) {
+						this.failedToggle = true;
+						setTimeout(() => {
+							this.failedToggle = false;
+						}, 3000);
+					} else {
+						await PeopleService.patchPeople(this.person[0]);
+							console.log("patch success");
+						this.successToggle = true;
+						setTimeout(() => {
+							this.successToggle = false;
+						}, 3000);
+					}
 				} catch (err) {
 					console.error(err.message);
 				}

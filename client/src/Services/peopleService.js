@@ -69,17 +69,16 @@ class PeopleService{
         people.first_name=people.first_name.replace(/\'/g, "''")
         people.last_name=people.last_name.replace(/\'/g, "''")
         people.contact_number=people.contact_number.replace(/\'/g, "''")
-        people.email_address=people.email_address.replace(/\'/g, "''")
         people.address1=people.address1.replace(/\'/g, "''")
         people.address2=people.address2.replace(/\'/g, "''")
         people.city=people.city.replace(/\'/g, "''")
 
-        return axios.patch(`${url}${People.id}`,{
+        return axios.patch(`${url}${people.person_id}`,{
             first_name:people.first_name,
             last_name:people.last_name,
             middle_initial:people.middle_initial,
             contact_number:people.contact_number,
-            email_address:people.email_address,
+            birthdate:people.birthdate,
             address1:people.address1,
             address2:people.address2,
             city:people.city

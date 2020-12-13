@@ -12,7 +12,7 @@ const {
 router.get('/:id', getPerson);
 router.patch('/:id/updatePersonEmail', updatePersonEmail)
 router.post('/addPerson', addPerson);
-router.put('/:id', updatePerson);
+router.patch('/:id', updatePerson);
 router.delete('/:id', deletePerson);
 
 

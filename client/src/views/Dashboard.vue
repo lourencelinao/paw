@@ -4,22 +4,72 @@
 		<!-- 3 boxes -->
 		<div class="grid grid-cols-3 gap-5 mt-3">
 			<!-- box 1 -->
-			<div class="bg-white rounded-lg shadow-lg">
+			<div
+				class="bg-white rounded-lg shadow-lg"
+				v-for="(all, indx) in all.slice(0, 3)"
+				:key="indx"
+			>
 				<div class="px-5 py-3 space-y-2">
 					<div class="flex justify-between">
 						<div class="text-lg font-semibold text-bluegray-500">
-							James Charles
+							{{ all.fields.Firstname + " " + all.fields.Lastname }}
 						</div>
-						<span class="text-sm text-orange-700 bg-orange-100 rounded-full p-1"
-							>Pending</span
+						<span
+							class="text-sm text-orange-700 bg-orange-100 rounded-full p-1"
+							>{{ all.fields.Status }}</span
 						>
 					</div>
-					<div class="text-4xl text-bluegray-700">Adoption</div>
-					<div class="text-md text-bluegray-300">2 days ago</div>
+					<div class="text-4xl text-bluegray-700">{{ all.fields.Type }}</div>
+					<div class="text-md text-bluegray-300">
+						{{ moment(all.createdTime) }}
+					</div>
 				</div>
 				<div class="flex justify-center">
-					<router-link
+					<!-- <router-link
 						to=""
+						class="flex justify-center items-center bg-bluegray-050 text-bluegray-700 text-md tracking-wide block w-full py-3 hover:bg-bluegray-700 hover:text-bluegray-050 rounded-b-lg space-x-2"
+					>
+						<div>View Application</div>
+						<chevron-right-icon
+							size="1x"
+							class="custom-class"
+						></chevron-right-icon>
+					</router-link> -->
+
+					<router-link
+						v-if="all.fields.Type === 'Adoption'"
+						:to="{
+							name: 'AdoptionApplicationShow',
+							params: { type: 'adoption', id: all.id },
+						}"
+						class="flex justify-center items-center bg-bluegray-050 text-bluegray-700 text-md tracking-wide block w-full py-3 hover:bg-bluegray-700 hover:text-bluegray-050 rounded-b-lg space-x-2"
+					>
+						<div>View Application</div>
+						<chevron-right-icon
+							size="1x"
+							class="custom-class"
+						></chevron-right-icon>
+					</router-link>
+					<router-link
+						v-else-if="all.fields.Type === 'Surrender'"
+						:to="{
+							name: 'SurrenderApplicationShow',
+							params: { type: 'surrender', id: all.id },
+						}"
+						class="flex justify-center items-center bg-bluegray-050 text-bluegray-700 text-md tracking-wide block w-full py-3 hover:bg-bluegray-700 hover:text-bluegray-050 rounded-b-lg space-x-2"
+					>
+						<div>View Application</div>
+						<chevron-right-icon
+							size="1x"
+							class="custom-class"
+						></chevron-right-icon>
+					</router-link>
+					<router-link
+						v-else
+						:to="{
+							name: 'VolunteerApplicationShow',
+							params: { type: 'volunteer', id: all.id },
+						}"
 						class="flex justify-center items-center bg-bluegray-050 text-bluegray-700 text-md tracking-wide block w-full py-3 hover:bg-bluegray-700 hover:text-bluegray-050 rounded-b-lg space-x-2"
 					>
 						<div>View Application</div>
@@ -31,7 +81,7 @@
 				</div>
 			</div>
 			<!-- box 2 -->
-			<div class="bg-white rounded-lg shadow-lg">
+			<!-- <div class="bg-white rounded-lg shadow-lg">
 				<div class="px-5 py-3 space-y-2">
 					<div class="flex justify-between">
 						<div class="text-lg font-semibold text-bluegray-500">
@@ -56,10 +106,10 @@
 						></chevron-right-icon>
 					</router-link>
 				</div>
-			</div>
+			</div> -->
 
 			<!-- box 3 -->
-			<div class="bg-white rounded-lg shadow-lg">
+			<!-- <div class="bg-white rounded-lg shadow-lg">
 				<div class="px-5 py-3 space-y-2">
 					<div class="flex justify-between">
 						<div class="text-lg font-semibold text-bluegray-500">
@@ -84,7 +134,7 @@
 						></chevron-right-icon>
 					</router-link>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<!-- 3 boxes end -->
 
@@ -340,10 +390,139 @@
 
 <script>
 	import { ChevronRightIcon, TrendingUpIcon } from "vue-feather-icons";
+	import moment from "moment";
+	import AdoptionApplicationService from "../Services/AdoptionApplicationService";
+	import SurrenderApplicationService from "../Services/SurrenderApplicationService";
+	import VolunteerApplicationService from "../Services/VolunteerApplicationService";
 	export default {
 		components: {
 			TrendingUpIcon,
 			ChevronRightIcon,
+		},
+		data() {
+			return {
+				all: [],
+				adoptions: [],
+				surrender: [],
+				volunteer: [],
+			};
+		},
+		methods: {
+			async getAdoption() {
+				try {
+					this.adoptions = await AdoptionApplicationService.getAdoptions();
+				} catch (err) {
+					console.error(err.message);
+				}
+			},
+			async getSurrender() {
+				try {
+					this.surrender = await SurrenderApplicationService.getSurrenders();
+				} catch (err) {
+					console.error(err.message);
+				}
+			},
+			async getVolunteer() {
+				try {
+					this.volunteer = await VolunteerApplicationService.getVolunteers();
+				} catch (err) {
+					console.error(err.message);
+				}
+			},
+			mergeAndSort() {
+				try {
+					let a = 0,
+						s = 0;
+					let temp = [];
+					while (
+						a < this.adoptions.records.length &&
+						s < this.surrender.records.length
+					) {
+						if (
+							this.adoptions.records[a].createdTime >
+							this.surrender.records[s].createdTime
+						) {
+							temp.push(this.adoptions.records[a]);
+							a++;
+						} else {
+							temp.push(this.surrender.records[s]);
+							s++;
+						}
+					}
+
+					while (a < this.adoptions.records.length) {
+						temp.push(this.adoptions.records[a]);
+						a++;
+					}
+
+					while (s < this.surrender.records.length) {
+						temp.push(this.surrender.records[s]);
+						s++;
+					}
+
+					let t = 0,
+						v = 0;
+					while (t < temp.length && v < this.volunteer.records.length) {
+						if (temp[t].createdTime > this.volunteer.records[v].createdTime) {
+							this.all.push(temp[t]);
+							t++;
+						} else {
+							this.all.push(this.volunteer.records[v]);
+							v++;
+						}
+					}
+
+					console.log("TEST");
+					while (t < temp.length) {
+						this.all.push(temp[t]);
+						t++;
+					}
+
+					while (v < this.volunteer.records.length) {
+						this.all.push(this.volunteer.records[v]);
+						v++;
+					}
+
+					console.log(this.all);
+				} catch (err) {
+					console.error(err.message);
+				}
+			},
+			moment(date) {
+				return moment(date).fromNow();
+			},
+			toggleAll() {
+				this.allToggle = true;
+				this.adoptionToggle = false;
+				this.volunteerToggle = false;
+				this.surrenderToggle = false;
+			},
+			toggleAdoption() {
+				this.allToggle = false;
+				this.adoptionToggle = true;
+				this.volunteerToggle = false;
+				this.surrenderToggle = false;
+			},
+			toggleSurrender() {
+				this.allToggle = false;
+				this.adoptionToggle = false;
+				this.volunteerToggle = false;
+				this.surrenderToggle = true;
+			},
+			toggleVolunteer() {
+				this.allToggle = false;
+				this.adoptionToggle = false;
+				this.volunteerToggle = true;
+				this.surrenderToggle = false;
+			},
+		},
+		async created() {
+			this.allToggle = true;
+			this.adoptionToggle = false;
+			await this.getAdoption();
+			await this.getSurrender();
+			await this.getVolunteer();
+			this.mergeAndSort();
 		},
 	};
 </script>

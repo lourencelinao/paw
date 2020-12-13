@@ -248,7 +248,7 @@
 						setTimeout(() => {
 							this.successToggle = false;
 						}, 3000);
-						this.dog = ""; // clear input fields
+						this.dog = {}; // clear input fields
 					}
 					console.log(this.dog);
 				} catch (error) {

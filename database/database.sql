@@ -69,6 +69,7 @@ create table person_image(
 create table users(
 	user_id int auto_increment,
 	person_id int NOT NULL,
+	email varchar(64) NOT NULL,
 	user_type enum('Admin', 'Manager', 'Staff', 'Volunteer') DEFAULT 'Admin', 
 	password varchar(256) DEFAULT 'P@ssw0rd',
 	image blob,

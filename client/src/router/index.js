@@ -38,6 +38,12 @@ import Profile from '../views/People/Profile.vue'
 import Shelter from '../views/Shelter.vue'
 import ClinicCreate from '../views/Clinic/ClinicCreate.vue'
 
+//client side
+
+import LandingPage from '../views/Client/LandingPage.vue'
+import ClientMain from '../views/Client/Main.vue'
+import ClientDogProfile from '../views/Client/ClientDogProfile.vue'
+
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
@@ -231,7 +237,23 @@ const routes = [
 				component: ClinicCreate
 			}
 		]
-	}
+	},
+	{
+		path: '/client',
+		component: ClientMain,
+		children: [
+			{
+				path: '',
+				component: LandingPage
+			},
+			{
+				path: 'dog/:id/profile',
+				name: 'ClientDogProfile',
+				component: ClientDogProfile
+			}
+		]
+	},
+
 ]
 
 const router = new VueRouter({

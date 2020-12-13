@@ -49,11 +49,11 @@ const addPerson = (req,res)=>{
                     address1 = '${req.body.address1}',
                     address2 = '${req.body.address2}',
                     city = '${req.body.city}',
-                    table_status = '${req.body.table_status}',
-                    update = now()
+                    updated = now()
                   WHERE person_id = ${req.params.id}`;
       conn.query(sql,(err,result)=>{
         if(err) throw err;
+        res.send()
       });
  };
  
