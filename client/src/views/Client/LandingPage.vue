@@ -69,7 +69,7 @@
 		methods: {
 			async getDogs() {
 				try {
-					this.dogs = await DogService.getDogs();
+					this.dogs = await DogService.getHealthyDogs();
 					console.log(this.dogs);
 				} catch (err) {
 					console.error(err.message);

@@ -72,6 +72,37 @@ class SurrenderApplicationService {
 			}
 		})
 	}
+
+	static approveSurrender(id) {
+		return axios.patch(
+			`https://api.airtable.com/v0/appOzL2CF5jfxI91A/Surrender%20Table`,
+			{
+				records: [
+					{
+						id: id,
+						fields: {
+							Status: 'Approved',
+						},
+					},
+				],
+			}
+		)
+	}
+	static rejectSurrender(id) {
+		return axios.patch(
+			`https://api.airtable.com/v0/appOzL2CF5jfxI91A/Surrender%20Table`,
+			{
+				records: [
+					{
+						id: id,
+						fields: {
+							Status: 'Rejected',
+						},
+					},
+				],
+			}
+		)
+	}
 }
 
 module.exports = SurrenderApplicationService

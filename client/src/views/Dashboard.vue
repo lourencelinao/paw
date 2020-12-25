@@ -15,7 +15,8 @@
 							{{ all.fields.Firstname + " " + all.fields.Lastname }}
 						</div>
 						<span
-							class="text-sm text-orange-700 bg-orange-100 rounded-full p-1"
+							class="text-sm rounded-full p-1"
+							:class="{ 'bg-green-100 text-green-700': all.fields.Status === 'Approved', 'text-orange-700 bg-orange-100':  all.fields.Status === 'Pending', 'text-red-700 bg-red-100':  all.fields.Status === 'Rejected' }"
 							>{{ all.fields.Status }}</span
 						>
 					</div>
@@ -138,17 +139,17 @@
 		</div>
 		<!-- 3 boxes end -->
 
-		<div class="text-2xl text-bluegray-700 mt-5">Quick Stats</div>
-		<div class="space-y-5">
+		<div class="text-2xl text-bluegray-700 mt-5" v-if="false">Quick Stats</div>
+		<div class="space-y-5" v-if="false">
 			<!-- 3 dog boxes -->
 			<div class="grid grid-cols-3 gap-5">
 				<!-- box 1 -->
-				<div class="bg-white rounded-lg px-5 py-2 shadow-lg">
+				<div class="bg-white rounded-lg px-5 pt-2 pb-5 shadow-lg">
 					<div class="flex justify-between items-end">
 						<div class="text-bluegray-500 text-lg font-semibold tracking-wide">
 							Total Dogs
 						</div>
-						<select
+						<!-- <select
 							name=""
 							id=""
 							class="bg-bluegray-050 rounded px-2 py-1 focus:ring-2 focus:ring-bluegray-700 focus:outline-none"
@@ -156,7 +157,7 @@
 							<option value="">30 days</option>
 							<option value="">15 days</option>
 							<option value="">7 days</option>
-						</select>
+						</select> -->
 						<!-- <div class="flex items-center space-x-2 mt-3">
 						<trending-up-icon
 							size="1.5x"
@@ -169,7 +170,7 @@
 					</div>
 
 					<div class="mt-3 text-bluegray-700 font-extralight text-5xl">69</div>
-					<div class="flex items-center space-x-2 mt-3">
+					<!-- <div class="flex items-center space-x-2 mt-3">
 						<trending-up-icon
 							size="1.5x"
 							class="text-green-700"
@@ -177,15 +178,15 @@
 						<div class="text-bluegray-700 text-sm tracking-wide font-medium">
 							4.20% Increase
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<!-- box 2 -->
-				<div class="bg-white rounded-lg px-5 py-2 shadow-lg">
+				<div class="bg-white rounded-lg px-5 pt-2 pb-5 shadow-lg">
 					<div class="flex justify-between items-baseline">
 						<div class="text-bluegray-500 text-lg font-semibold tracking-wide">
 							New Applications
 						</div>
-						<select
+						<!-- <select
 							name=""
 							id=""
 							class="bg-bluegray-050 rounded px-2 py-1 focus:ring-2 focus:ring-bluegray-700 focus:outline-none"
@@ -193,11 +194,11 @@
 							<option value="">30 days</option>
 							<option value="">15 days</option>
 							<option value="">7 days</option>
-						</select>
+						</select> -->
 					</div>
 
 					<div class="mt-3 text-bluegray-700 font-medium text-5xl">4</div>
-					<div class="flex items-center space-x-2 mt-3">
+					<!-- <div class="flex items-center space-x-2 mt-3">
 						<trending-up-icon
 							size="1.5x"
 							class="text-green-700"
@@ -205,11 +206,11 @@
 						<div class="text-bluegray-700 text-sm tracking-wide font-medium">
 							69% Increase
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- box 3 -->
-				<div class="bg-white rounded-lg px-5 py-2 shadow-lg">
+				<div class="bg-white rounded-lg px-5 pt-2 pb-5 shadow-lg">
 					<div class="flex justify-between items-baseline">
 						<div class="text-bluegray-500 text-lg font-semibold tracking-wide">
 							Active Dogs
@@ -242,14 +243,15 @@
 			<!-- 3 boxes end -->
 
 			<!--  -->
+			
 			<div class="grid grid-cols-2 gap-5">
 				<!-- box 1 -->
-				<div class="bg-white rounded-lg px-5 py-2 shadow-lg">
+				<div class="bg-white rounded-lg px-5 pt-2 pb-5 shadow-lg">
 					<div class="flex justify-between items-end">
 						<div class="text-bluegray-500 text-lg font-semibold tracking-wide">
 							Intake
 						</div>
-						<select
+						<!-- <select
 							name=""
 							id=""
 							class="bg-bluegray-050 rounded px-2 py-1 focus:ring-2 focus:ring-bluegray-700 focus:outline-none"
@@ -260,11 +262,11 @@
 							<option value="">30 days</option>
 							<option value="">15 days</option>
 							<option value="">7 days</option>
-						</select>
+						</select> -->
 					</div>
 
 					<div class="mt-3 text-bluegray-700 font-extralight text-5xl">69</div>
-					<div class="flex items-center space-x-2 mt-3">
+					<!-- <div class="flex items-center space-x-2 mt-3">
 						<trending-up-icon
 							size="1.5x"
 							class="text-green-700"
@@ -272,16 +274,16 @@
 						<div class="text-bluegray-700 text-sm tracking-wide font-medium">
 							4.20% Increase
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- box 2 -->
-				<div class="bg-white rounded-lg px-5 py-2 shadow-lg">
+				<div class="bg-white rounded-lg px-5 pt-2 pb-5 shadow-lg">
 					<div class="flex justify-between items-end">
 						<div class="text-bluegray-500 text-lg font-semibold tracking-wide">
 							Adopted
 						</div>
-						<select
+						<!-- <select
 							name=""
 							id=""
 							class="bg-bluegray-050 rounded px-2 py-1 focus:ring-2 focus:ring-bluegray-700 focus:outline-none"
@@ -292,11 +294,11 @@
 							<option value="">30 days</option>
 							<option value="">15 days</option>
 							<option value="">7 days</option>
-						</select>
+						</select> -->
 					</div>
 
 					<div class="mt-3 text-bluegray-700 font-extralight text-5xl">69</div>
-					<div class="flex items-center space-x-2 mt-3">
+					<!-- <div class="flex items-center space-x-2 mt-3">
 						<trending-up-icon
 							size="1.5x"
 							class="text-green-700"
@@ -304,16 +306,16 @@
 						<div class="text-bluegray-700 text-sm tracking-wide font-medium">
 							4.20% Increase
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- box 3 -->
-				<div class="bg-white rounded-lg px-5 py-2 shadow-lg">
+				<div class="bg-white rounded-lg px-5 pt-2 pb-5 shadow-lg">
 					<div class="flex justify-between items-end">
 						<div class="text-bluegray-500 text-lg font-semibold tracking-wide">
 							Transferred
 						</div>
-						<select
+						<!-- <select
 							name=""
 							id=""
 							class="bg-bluegray-050 rounded px-2 py-1 focus:ring-2 focus:ring-bluegray-700 focus:outline-none"
@@ -324,11 +326,11 @@
 							<option value="">30 days</option>
 							<option value="">15 days</option>
 							<option value="">7 days</option>
-						</select>
+						</select> -->
 					</div>
 
 					<div class="mt-3 text-bluegray-700 font-extralight text-5xl">69</div>
-					<div class="flex items-center space-x-2 mt-3">
+					<!-- <div class="flex items-center space-x-2 mt-3">
 						<trending-up-icon
 							size="1.5x"
 							class="text-green-700"
@@ -336,16 +338,16 @@
 						<div class="text-bluegray-700 text-sm tracking-wide font-medium">
 							4.20% Increase
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- box 4 -->
-				<div class="bg-white rounded-lg px-5 py-2 shadow-lg">
+				<div class="bg-white rounded-lg px-5 pt-2 pb-5 shadow-lg">
 					<div class="flex justify-between items-end">
 						<div class="text-bluegray-500 text-lg font-semibold tracking-wide">
 							Euthanized
 						</div>
-						<select
+						<!-- <select
 							name=""
 							id=""
 							class="bg-bluegray-050 rounded px-2 py-1 focus:ring-2 focus:ring-bluegray-700 focus:outline-none"
@@ -356,11 +358,11 @@
 							<option value="">30 days</option>
 							<option value="">15 days</option>
 							<option value="">7 days</option>
-						</select>
+						</select> -->
 					</div>
 
 					<div class="mt-3 text-bluegray-700 font-extralight text-5xl">69</div>
-					<div class="flex items-center space-x-2 mt-3">
+					<!-- <div class="flex items-center space-x-2 mt-3">
 						<trending-up-icon
 							size="1.5x"
 							class="text-green-700"
@@ -368,7 +370,7 @@
 						<div class="text-bluegray-700 text-sm tracking-wide font-medium">
 							4.20% Increase
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

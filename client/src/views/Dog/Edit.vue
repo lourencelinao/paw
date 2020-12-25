@@ -72,9 +72,8 @@
 									class="w-1/2 px-4 py-2 bg-bluegray-050 rounded focus:ring-2 focus:ring-bluegray-700 focus:outline-none focus:shadow-outline focus:bg-white w-1/2"
 									v-model="dog[0].status"
 								>
-									<option value="Adopted">Adopted</option>
 									<option value="Died in Care">Died in Care</option>
-									<option value="Inactive">Inactive</option>
+									<option value="Inactive">Euthanized</option>
 									<option value="Recuperating">Recuperating</option>
 									<option value="Transferred">Transferred</option>
 									<option value="Healthy">Healthy</option>

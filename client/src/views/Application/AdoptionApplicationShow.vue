@@ -163,6 +163,7 @@
 					await AdoptionApplicationService.approveAdoption(id)
 					let outtake = { dog_id: this.dog[0].dog_id, outtakeable_type: 'Adopted', firstname: this.adoption.fields.Firstname, middle_initial: this.adoption.fields.MiddleInitial, lastname: this.adoption.fields.Lastname}
 					await OuttakeService.postOuttake(outtake)
+					await DogService.patchAdoption(this.dog[0].dog_id)
 				}catch(err){
 					console.error(err.message)
 				}

@@ -7,7 +7,7 @@ const {
     deleteOuttake
 } = require("../../controllers/outtake");
 
-router.get('/', getOuttake);
+router.get('/:id', getOuttake);
 router.post('/', addOuttake);
 router.delete('/:id', deleteOuttake);
 

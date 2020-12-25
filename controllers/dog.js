@@ -8,6 +8,16 @@ const getDogs = (req, res) => {
         if(err) throw err;
         res.send(result);
     });
+}
+;
+const getHealthyDogs = (req, res) => {
+    let sql = `SELECT * 
+                FROM dog 
+                WHERE table_status = 'Active' AND status = 'Healthy'`;
+    con.query(sql, (err, result)=>{
+        if(err) throw err;
+        res.send(result);
+    });
 };
 
 const getDog = (req, res) => {
@@ -66,6 +76,14 @@ const updateDog = (req, res) => {
     });
 };
 
+const patchAdoption = (req, res) => {
+    let sql = `UPDATE dog SET status = 'Adopted' WHERE dog_id = ${req.params.id}`
+    con.query(sql, (err, result) => {
+        if(err) throw err
+        res.send()
+    })
+}
+
 const deleteDog = (req, res) => {
     let sql = `UPDATE dog 
                 SET table_status = 'Deleted', deleted = now() 
@@ -78,9 +96,11 @@ const deleteDog = (req, res) => {
 
 module.exports = {
     getDogs,
+    getHealthyDogs,
     getDog,
     getDogByName,
     addDog,
     updateDog,
-    deleteDog
+    deleteDog,
+    patchAdoption
 };

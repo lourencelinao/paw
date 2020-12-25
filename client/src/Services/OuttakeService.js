@@ -2,12 +2,12 @@ const axios = require('axios')
 const url="http://localhost:3000/api/outtake/"
 
 class OuttakeService {
-    static getOuttakes(){
+    static getOuttakes(id){
         return new Promise((resolve,reject)=>{
             try{
                 let data=[]
                 axios
-                    .get(url)
+                    .get(`${url}${id}`)
                     .then((response)=>{
                         data=response.data
                         resolve(data)

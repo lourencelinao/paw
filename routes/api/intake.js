@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  createIntake,
+  postIntake,
   getIntake,
   patchIntake,
   deleteIntake,
 } = require("../../controllers/intake");
 
-router.get('/', getIntake);
-router.post('/create', createIntake);
+router.get('/:id', getIntake);
+router.post('/', postIntake);
 router.patch('/:id', patchIntake);
 router.delete('/:id', deleteIntake);
 

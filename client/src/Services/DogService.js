@@ -20,6 +20,23 @@ class DogService {
 		})
 	}
 
+	static getHealthyDogs() {
+		return new Promise((resolve, reject) => {
+			try {
+				let data = []
+				axios
+					.get(`${url}healthy`)
+					.then((response) => {
+						data = response.data
+						resolve(data)
+					})
+					.catch((err) => console.error(err.message))
+			} catch (err) {
+				reject(err)
+			}
+		})
+	}
+
 	static getDog(id) {
 		return new Promise((resolve, reject) => {
 			try {
@@ -34,6 +51,12 @@ class DogService {
 			} catch (err) {
 				reject(err)
 			}
+		})
+	}
+
+	static patchAdoption(id) {
+		return axios.patch(`${url}adopted/${id}`, {
+			status: 'Adopted'
 		})
 	}
 

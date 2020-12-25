@@ -8,10 +8,14 @@ const {
     getDogByName,
     addDog,
     updateDog,
-    deleteDog
+    deleteDog,
+    getHealthyDogs,
+    patchAdoption
 } = require("../../controllers/dog");
 
 router.get('/', getDogs);
+router.patch('/adopted/:id', patchAdoption)
+router.get('/healthy', getHealthyDogs);
 router.get('/:id', getDog);
 router.get('/name/:dog_name', getDogByName);
 router.post('/', addDog);

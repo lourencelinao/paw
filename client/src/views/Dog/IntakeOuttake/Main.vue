@@ -3,32 +3,53 @@
 		<div class="my-5 w-2/3 mx-auto rounded shadow bg-white py-5 px-8">
 			<div class="flex justify-between items-center">
 				<div class="text-3xl text-bluegray-700 pb-2">Intake</div>
-				<router-link
+				<!-- <router-link
 					to="/dogs/medical/vaccine/create"
 					class="btn-primary px-4 py-2"
 					>New Intake</router-link
-				>
+				> -->
 			</div>
 
 			<!-- intake -->
-			<div class="grid grid-cols-2 gap-4 place-items-center py-5">
+			<div class="grid grid-cols-2 gap-4 place-items-center py-5" v-if="intake.length != 0">
 				<div class="w-full">
 					<div class="text-bluegray-300 text-md">Arrival/Admission Date</div>
-					<div class="text-3xl text-bluegray-700">4/20/69</div>
+					<div class="text-3xl text-bluegray-700">{{ moment(intake[0].created) }}</div>
 				</div>
 				<div class="w-full">
 					<div class="text-bluegray-300 text-md">
 						Admission Attendant/Receiver
 					</div>
-					<div class="text-3xl text-bluegray-700">Lourence Linao</div>
+					<div class="text-3xl text-bluegray-700">{{ intake[0].attendant }}</div>
 				</div>
 				<div class="w-full">
 					<div class="text-bluegray-300 text-md">Type of Intake</div>
-					<div class="text-3xl text-bluegray-700">Surrender</div>
+					<div class="text-3xl text-bluegray-700">{{ intake[0].intakeable_type }}</div>
 				</div>
 				<div class="w-full">
 					<div class="text-bluegray-300 text-md">Person/Address/Shelter</div>
-					<div class="text-3xl text-bluegray-700">James Charles</div>
+					<div class="text-3xl text-bluegray-700">{{ intake[0].firstname + " " + intake[0].middle_initial + " " + intake[0].lastname }}</div>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-2 gap-4 place-items-center py-5" v-else>
+				<div class="w-full">
+					<div class="text-bluegray-300 text-md">Arrival/Admission Date</div>
+					<div class="text-3xl text-bluegray-700"></div>
+				</div>
+				<div class="w-full">
+					<div class="text-bluegray-300 text-md">
+						Admission Attendant/Receiver
+					</div>
+					<div class="text-3xl text-bluegray-700"></div>
+				</div>
+				<div class="w-full">
+					<div class="text-bluegray-300 text-md">Type of Intake</div>
+					<div class="text-3xl text-bluegray-700"></div>
+				</div>
+				<div class="w-full">
+					<div class="text-bluegray-300 text-md">Person/Address/Shelter</div>
+					<div class="text-3xl text-bluegray-700"></div>
 				</div>
 			</div>
 		</div>
@@ -79,7 +100,7 @@
 									<td
 										class="px-4 py-4 whitespace-nowrap text-sm text-bluegray-500"
 									>
-										{{ moment(x.createdTime) }}
+										{{ moment(x.created) }}
 									</td>
 									<td
 										class="px-4 py-4 whitespace-nowrap text-sm text-bluegray-500"
@@ -115,17 +136,27 @@
 
 <script>
 	import OuttakeService from '../../../Services/OuttakeService'
+	import IntakeService from '../../../Services/IntakeService'
 	import moment from 'moment'
 	export default {
 		data(){
 			return{
-				outtakes: []
+				outtakes: [],
+				intake: []
 			}
 		},
 		methods: {
+			async getIntake(){
+				try{
+					this.intake = await IntakeService.getIntake(this.$route.params.id)
+					console.log(this.intake)
+				}catch(err){
+					console.error(err.message)
+				}
+			},
 			async getOuttakes(){
 				try{
-					this.outtakes = await OuttakeService.getOuttakes()
+					this.outtakes = await OuttakeService.getOuttakes(this.$route.params.id)
 					console.log(this.outtakes)
 				}catch(err){
 					console.error(err.message)
@@ -137,6 +168,7 @@
 		},
 		created() {
 			this.getOuttakes()
+			this.getIntake()
 		}
 	};
 </script>

@@ -107,8 +107,6 @@
 							v-model="dog.status"
 						>
 							<option disabled value="">Please select one</option>
-							<option value="Adopted">Adopted</option>
-							<option value="Inactive">Inactive</option>
 							<option value="Recuperating">Recuperating</option>
 							<option value="Transferred">Transferred</option>
 							<option value="Healthy">Healthy</option>

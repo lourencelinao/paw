@@ -3,7 +3,7 @@ const con = require('../database/database');
 const getOuttake = (req, res) => {
     let sql = `SELECT * 
                 FROM outtake 
-                WHERE table_status = "Active"`;
+                WHERE table_status = "Active" AND dog_id = ${req.params.id}`;
     con.query(sql, (err, result)=>{
         if(err) throw err;
         res.send(result);

@@ -8,9 +8,10 @@
 							<div class="text-bluegray-050 text-3xl tracking-wide">PAW</div>
 							<!-- <div class="text-bluegray-050 text-xl">Apply</div> -->
 						</div>
-						<!-- <div>
-							<span class="text-bluegray-050 text-xl">Login</span>
-						</div> -->
+						<div class="space-x-5">
+							<a href="https://airtable.com/shrO36rznyXhTxzK8" target="_blank" class="text-bluegray-050 text-xl">Volunteer</a>
+							<a href="https://airtable.com/shrhvnjtex3QeMxWa" target="_blank" class="text-bluegray-050 text-xl">Surrender</a>
+						</div>
 					</div>
 				</div>
 			</div>
