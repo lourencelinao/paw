@@ -5,6 +5,7 @@ const { authRole } = require('../../middleware/auth');
 const {
     getDogs,
     getDog,
+    getDogByName,
     addDog,
     updateDog,
     deleteDog
@@ -12,6 +13,7 @@ const {
 
 router.get('/', getDogs);
 router.get('/:id', getDog);
+router.get('/name/:dog_name', getDogByName);
 router.post('/', addDog);
 router.patch('/:id', updateDog);
 router.delete('/:id', deleteDog);

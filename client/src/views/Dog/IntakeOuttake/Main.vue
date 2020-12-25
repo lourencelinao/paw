@@ -37,11 +37,11 @@
 		<div class="flex flex-col mt-10 p-5 rounded-md bg-white shadow w-2/3 mx-auto">
 			<div class="flex justify-between items-baseline pb-3">
 				<div class="text-2xl text-bluegray-700 pb-2">Outtakes</div>
-				<router-link
+				<!-- <router-link
 					to="/dogs/medical/vaccine/create"
 					class="btn-primary px-4 py-2"
 					>New Outtake</router-link
-				>
+				> -->
 			</div>
 			<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -75,21 +75,21 @@
 								</tr>
 							</thead>
 							<tbody class="bg-white">
-								<tr>
+								<tr v-for="(x, indx) in outtakes" :key="indx">
 									<td
 										class="px-4 py-4 whitespace-nowrap text-sm text-bluegray-500"
 									>
-										4/20/69
+										{{ moment(x.createdTime) }}
 									</td>
 									<td
 										class="px-4 py-4 whitespace-nowrap text-sm text-bluegray-500"
 									>
-										Adopted
+										{{ x.outtakeable_type }}
 									</td>
 									<td
 										class="px-4 py-4 whitespace-nowrap text-sm text-bluegray-500"
 									>
-										John Doe
+										{{ x.firstname + " " + x.middle_initial +  " " +  x.lastname }}
 									</td>
 									<td
 										class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium"
@@ -98,9 +98,9 @@
 											to=""
 											class="flex justify-center space-x-5 text-bluegray-700"
 										>
-											<eye-icon size="1.5x" class="custom-class"></eye-icon>
+											<!-- <eye-icon size="1.5x" class="custom-class"></eye-icon>
 											<edit-icon size="1.5x" class="custom-class"></edit-icon>
-											<trash-icon size="1.5x" class="custom-class"></trash-icon>
+											<trash-icon size="1.5x" class="custom-class"></trash-icon> -->
 										</router-link>
 									</td>
 								</tr>
@@ -114,7 +114,31 @@
 </template>
 
 <script>
-	export default {};
+	import OuttakeService from '../../../Services/OuttakeService'
+	import moment from 'moment'
+	export default {
+		data(){
+			return{
+				outtakes: []
+			}
+		},
+		methods: {
+			async getOuttakes(){
+				try{
+					this.outtakes = await OuttakeService.getOuttakes()
+					console.log(this.outtakes)
+				}catch(err){
+					console.error(err.message)
+				}
+			},
+				moment(date) {
+				return moment(date).fromNow();
+			},
+		},
+		created() {
+			this.getOuttakes()
+		}
+	};
 </script>
 
 <style>

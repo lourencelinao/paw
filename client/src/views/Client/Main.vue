@@ -8,9 +8,9 @@
 							<div class="text-bluegray-050 text-3xl tracking-wide">PAW</div>
 							<!-- <div class="text-bluegray-050 text-xl">Apply</div> -->
 						</div>
-						<div>
+						<!-- <div>
 							<span class="text-bluegray-050 text-xl">Login</span>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

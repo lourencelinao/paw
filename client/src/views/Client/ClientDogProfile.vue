@@ -13,7 +13,7 @@
 					<div class="space-y-2">
 						<div class="flex justify-between">
               <div class="text-bluegray-700 text-4xl">{{ dog[0].dog_name }}</div>
-            <a href="https://airtable.com/shrDKDQ67PU4xk0dw" target="_blank" class="btn-primary px-4 py-2">Apply for adoption</a>
+            <a :href="`https://airtable.com/shrDKDQ67PU4xk0dw?prefill_Dog_name=${dog[0].dog_name}`" target="_blank" class="btn-primary px-4 py-2">Apply for adoption</a>
             </div>
 						<div class="text-bluegray-500 text-xl">{{ dog[0].breed }}</div>
 						<p>

@@ -18,7 +18,7 @@
 					<!-- Pet -->
 					<div>
 						<div class="text-bluegray-500">Pet</div>
-						<div class="text-bluegray-700 text-2xl">Maya</div>
+						<div class="text-bluegray-700 text-2xl">{{ adoption.fields.Dog_name }}</div>
 					</div>
 
 					<!-- contact -->
@@ -55,8 +55,8 @@
                     <!-- status -->
 					<div>
 						<div class="text-bluegray-500">Status</div>
-						<span class="bg-orange-100 text-orange-800 rounded-full p-1">
-							Pending
+						<span class=" rounded-full p-1" :class="{ 'bg-green-100 text-green-700': adoption.fields.Status === 'Approved', 'text-orange-700 bg-orange-100':  adoption.fields.Status === 'Pending', 'text-red-700 bg-red-100': adoption.fields.Status === 'Rejected' }">
+							{{ adoption.fields.Status }}
 						</span>
 					</div>
 				</div>
@@ -124,23 +124,32 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="flex items-center justify-end my-3 space-x-5" >
+				<button class="bg-red-700 text-white font-medium tracking-widest rounded-md hover:bg-red-800 focus:outline-none px-4 py-2" @click="rejectAdoption(adoption.id)">Reject</button>
+				<button class="btn-primary px-4 py-2" @click="approveAdoption(adoption.id)">Approve</button>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-    import AdoptionApplicationService from "../../Services/AdoptionApplicationService";
+	import AdoptionApplicationService from "../../Services/AdoptionApplicationService";
+	import OuttakeService from '../../Services/OuttakeService'
+	import DogService from '../../Services/DogService'
     import moment from 'moment'
 	export default {
         data() {
             return {
-                adoption: []
+				adoption: [],
+				dog: ''
             }
         },
         methods: {
             async getAdoption() {
                 try{
-                    this.adoption = await AdoptionApplicationService.getAdoption(this.$route.params.id)
+					this.adoption = await AdoptionApplicationService.getAdoption(this.$route.params.id)
+					this.dog = await DogService.getDogByName(this.adoption.fields.Dog_name)
                     console.log(this.adoption)
                 }catch(err){
                     console.error(err.message)
@@ -149,6 +158,22 @@
             moment(date) {
 				return moment(date).fromNow();
 			},
+			async approveAdoption(id){
+				try{
+					await AdoptionApplicationService.approveAdoption(id)
+					let outtake = { dog_id: this.dog[0].dog_id, outtakeable_type: 'Adopted', firstname: this.adoption.fields.Firstname, middle_initial: this.adoption.fields.MiddleInitial, lastname: this.adoption.fields.Lastname}
+					await OuttakeService.postOuttake(outtake)
+				}catch(err){
+					console.error(err.message)
+				}
+			},
+			async rejectAdoption(id){
+				try{
+					await AdoptionApplicationService.rejectAdoption(id)
+				}catch(err){
+					console.error(err.message)
+				}
+			}
         },
         created() {
             this.getAdoption()

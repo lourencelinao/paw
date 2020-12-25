@@ -185,9 +185,9 @@
 											<router-link :to="{ name: 'DogEdit', params: { id: dog.dog_id } }" class="text-bluegray-700">
 												<edit-icon size="1.5x" class="text-lg"></edit-icon>
 											</router-link>
-											<router-link to="" class="text-bluegray-700">
+											<button class="text-bluegray-700" @click="deleteDog(dog.dog_id)">
 												<trash-icon size="1.5x" class="text-lg"></trash-icon>
-											</router-link>
+											</button>
 										</div>
 									</td>
 								</tr>
@@ -233,6 +233,16 @@ import DogService from '../../Services/DogService'
 					this.dogs = await DogService.getDogs()
 					console.log(this.dogs)
 				}catch(err){
+					console.error(err.message)
+				}
+			},
+			async deleteDog(id){
+				try{
+					await DogService.deleteDog(id)
+					this.dogs = await DogService.getDogs()
+					console.log(this.dogs)
+					
+				}catch(err) {
 					console.error(err.message)
 				}
 			}

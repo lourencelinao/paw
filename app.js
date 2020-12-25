@@ -17,6 +17,7 @@ app.use("/api/rescued", require("./routes/api/rescued_intake"));
 app.use("/api/transferee",require("./routes/api/transferee_intake"))
 app.use("/api/medical",require("./routes/api/medical_record"))
 app.use("/api/intake",require("./routes/api/intake"))
+app.use("/api/outtake",require("./routes/api/outtake"))
 app.use("/api/dogs", require('./routes/api/dog'))
 app.use("/api/clinic", require('./routes/api/clinic'))
 app.use("/api/vaccine", require('./routes/api/vaccination'))

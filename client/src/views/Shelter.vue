@@ -1,7 +1,7 @@
 <template>
-	<div>
-		<div class="w-2/3 mx-auto">
-			<div class="bg-white shadow rounded-lg mx-auto px-12 py-5">
+	<div class="w-2/3 mx-auto h-screen">
+		<div>
+			<div class="bg-white shadow rounded-lg px-12 py-5">
 				<div class="text-2xl text-bluegray-700">Invite New User</div>
 				<form @submit.prevent="addUser">
 					<input
@@ -286,174 +286,163 @@
 			</div>
 
 			<!-- vet -->
-			<div class="flex flex-col mt-5">
-				<div class="flex justify-between items-center my-3">
-					<div class="text-3xl text-bluegray-700">Veterinarian</div>
-					<router-link to="/vet/create" class="btn-primary px-4 py-2"
-						>New Vet</router-link
-					>
-				</div>
-				<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+			<!-- <div class="flex flex-col mt-5">
+			<div class="flex justify-between items-center my-3">
+				<div class="text-3xl text-bluegray-700">Veterinarian</div>
+				<router-link to="/vet/create" class="btn-primary px-4 py-2"
+					>New Vet</router-link
+				>
+			</div>
+			<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+				<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 					<div
-						class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+						class="shadow overflow-hidden border-b border-bluegray-200 sm:rounded-lg"
 					>
-						<div
-							class="shadow overflow-hidden border-b border-bluegray-200 sm:rounded-lg"
-						>
-							<table class="min-w-full">
-								<thead>
-									<tr>
-										<th
-											scope="col"
-											class="px-6 py-3 bg-bluegray-50 text-left text-sm font-medium text-bluegray-500 uppercase tracking-wider"
-										>
-											Name
-										</th>
-										<th
-											scope="col"
-											class="px-6 py-3 bg-bluegray-50 text-left text-sm font-medium text-bluegray-500 uppercase tracking-wider"
-										>
-											Role
-										</th>
-										<th scope="col" class="px-6 py-3 bg-bluegray-50">
-											<span class="sr-only">Edit</span>
-										</th>
-									</tr>
-								</thead>
-								<tbody class="bg-white">
-									<tr>
-										<td class="px-6 py-4 whitespace-nowrap">
-											<div class="flex items-center">
-												<div class="flex-shrink-0 h-10 w-10">
-													<img
-														class="h-10 w-10 rounded-full"
-														src="https://yt3.ggpht.com/ytc/AAUvwnghGxttlnoIZ8GiuEYn_CyIeDVvV1lu1JS4a3YtmQ=s900-c-k-c0x00ffffff-no-rj"
-														alt=""
-													/>
+						<table class="min-w-full">
+							<thead>
+								<tr>
+									<th
+										scope="col"
+										class="px-6 py-3 bg-bluegray-50 text-left text-sm font-medium text-bluegray-500 uppercase tracking-wider"
+									>
+										Name
+									</th>
+									<th
+										scope="col"
+										class="px-6 py-3 bg-bluegray-50 text-left text-sm font-medium text-bluegray-500 uppercase tracking-wider"
+									>
+										Role
+									</th>
+									<th scope="col" class="px-6 py-3 bg-bluegray-50">
+										<span class="sr-only">Edit</span>
+									</th>
+								</tr>
+							</thead>
+							<tbody class="bg-white">
+								<tr>
+									<td class="px-6 py-4 whitespace-nowrap">
+										<div class="flex items-center">
+											<div class="flex-shrink-0 h-10 w-10">
+												<img
+													class="h-10 w-10 rounded-full"
+													src="https://yt3.ggpht.com/ytc/AAUvwnghGxttlnoIZ8GiuEYn_CyIeDVvV1lu1JS4a3YtmQ=s900-c-k-c0x00ffffff-no-rj"
+													alt=""
+												/>
+											</div>
+											<div class="ml-4">
+												<div class="text-lg font-medium text-bluegray-900">
+													James Charles
 												</div>
-												<div class="ml-4">
-													<div class="text-lg font-medium text-bluegray-900">
-														James Charles
-													</div>
-													<div class="text-sm text-bluegray-500">
-														james.charles@example.com
-													</div>
+												<div class="text-sm text-bluegray-500">
+													james.charles@example.com
 												</div>
 											</div>
-										</td>
-										<td class="px-6 py-4 whitespace-nowrap">
-											<div class="text-sm text-bluegray-900">Volunteer</div>
-										</td>
-										<td
-											class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+										</div>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap">
+										<div class="text-sm text-bluegray-900">Volunteer</div>
+									</td>
+									<td
+										class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+									>
+										<router-link
+											to=""
+											class="flex justify-center space-x-5 text-bluegray-700"
 										>
-											<router-link
-												to=""
-												class="flex justify-center space-x-5 text-bluegray-700"
-											>
-												<eye-icon size="1.5x" class="custom-class"></eye-icon>
-												<refresh-cw-icon
-													size="1.5x"
-													class="custom-class"
-												></refresh-cw-icon>
-												<trash-icon
-													size="1.5x"
-													class="custom-class"
-												></trash-icon>
-											</router-link>
-										</td>
-									</tr>
+											<eye-icon size="1.5x" class="custom-class"></eye-icon>
+											<refresh-cw-icon
+												size="1.5x"
+												class="custom-class"
+											></refresh-cw-icon>
+											<trash-icon size="1.5x" class="custom-class"></trash-icon>
+										</router-link>
+									</td>
+								</tr>
 
-									<tr class="bg-bluegray-050">
-										<td class="px-6 py-4 whitespace-nowrap">
-											<div class="flex items-center">
-												<div class="flex-shrink-0 h-10 w-10">
-													<img
-														class="h-10 w-10 rounded-full"
-														src="https://yt3.ggpht.com/ytc/AAUvwnghGxttlnoIZ8GiuEYn_CyIeDVvV1lu1JS4a3YtmQ=s900-c-k-c0x00ffffff-no-rj"
-														alt=""
-													/>
+								<tr class="bg-bluegray-050">
+									<td class="px-6 py-4 whitespace-nowrap">
+										<div class="flex items-center">
+											<div class="flex-shrink-0 h-10 w-10">
+												<img
+													class="h-10 w-10 rounded-full"
+													src="https://yt3.ggpht.com/ytc/AAUvwnghGxttlnoIZ8GiuEYn_CyIeDVvV1lu1JS4a3YtmQ=s900-c-k-c0x00ffffff-no-rj"
+													alt=""
+												/>
+											</div>
+											<div class="ml-4">
+												<div class="text-lg font-medium text-bluegray-900">
+													James Charles
 												</div>
-												<div class="ml-4">
-													<div class="text-lg font-medium text-bluegray-900">
-														James Charles
-													</div>
-													<div class="text-sm text-bluegray-500">
-														james.charles@example.com
-													</div>
+												<div class="text-sm text-bluegray-500">
+													james.charles@example.com
 												</div>
 											</div>
-										</td>
-										<td class="px-6 py-4 whitespace-nowrap">
-											<div class="text-sm text-bluegray-900">Staff</div>
-										</td>
-										<td
-											class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+										</div>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap">
+										<div class="text-sm text-bluegray-900">Staff</div>
+									</td>
+									<td
+										class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+									>
+										<router-link
+											to=""
+											class="flex justify-center space-x-5 text-bluegray-700"
 										>
-											<router-link
-												to=""
-												class="flex justify-center space-x-5 text-bluegray-700"
-											>
-												<eye-icon size="1.5x" class="custom-class"></eye-icon>
-												<refresh-cw-icon
-													size="1.5x"
-													class="custom-class"
-												></refresh-cw-icon>
-												<trash-icon
-													size="1.5x"
-													class="custom-class"
-												></trash-icon>
-											</router-link>
-										</td>
-									</tr>
-									<tr>
-										<td class="px-6 py-4 whitespace-nowrap">
-											<div class="flex items-center">
-												<div class="flex-shrink-0 h-10 w-10">
-													<img
-														class="h-10 w-10 rounded-full"
-														src="https://yt3.ggpht.com/ytc/AAUvwnghGxttlnoIZ8GiuEYn_CyIeDVvV1lu1JS4a3YtmQ=s900-c-k-c0x00ffffff-no-rj"
-														alt=""
-													/>
+											<eye-icon size="1.5x" class="custom-class"></eye-icon>
+											<refresh-cw-icon
+												size="1.5x"
+												class="custom-class"
+											></refresh-cw-icon>
+											<trash-icon size="1.5x" class="custom-class"></trash-icon>
+										</router-link>
+									</td>
+								</tr>
+								<tr>
+									<td class="px-6 py-4 whitespace-nowrap">
+										<div class="flex items-center">
+											<div class="flex-shrink-0 h-10 w-10">
+												<img
+													class="h-10 w-10 rounded-full"
+													src="https://yt3.ggpht.com/ytc/AAUvwnghGxttlnoIZ8GiuEYn_CyIeDVvV1lu1JS4a3YtmQ=s900-c-k-c0x00ffffff-no-rj"
+													alt=""
+												/>
+											</div>
+											<div class="ml-4">
+												<div class="text-lg font-medium text-bluegray-900">
+													James Charles
 												</div>
-												<div class="ml-4">
-													<div class="text-lg font-medium text-bluegray-900">
-														James Charles
-													</div>
-													<div class="text-sm text-bluegray-500">
-														james.charles@example.com
-													</div>
+												<div class="text-sm text-bluegray-500">
+													james.charles@example.com
 												</div>
 											</div>
-										</td>
-										<td class="px-6 py-4 whitespace-nowrap">
-											<div class="text-sm text-bluegray-900">Admin</div>
-										</td>
-										<td
-											class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+										</div>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap">
+										<div class="text-sm text-bluegray-900">Admin</div>
+									</td>
+									<td
+										class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+									>
+										<router-link
+											to=""
+											class="flex justify-center space-x-5 text-bluegray-700"
 										>
-											<router-link
-												to=""
-												class="flex justify-center space-x-5 text-bluegray-700"
-											>
-												<eye-icon size="1.5x" class="custom-class"></eye-icon>
-												<refresh-cw-icon
-													size="1.5x"
-													class="custom-class"
-												></refresh-cw-icon>
-												<trash-icon
-													size="1.5x"
-													class="custom-class"
-												></trash-icon>
-											</router-link>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+											<eye-icon size="1.5x" class="custom-class"></eye-icon>
+											<refresh-cw-icon
+												size="1.5x"
+												class="custom-class"
+											></refresh-cw-icon>
+											<trash-icon size="1.5x" class="custom-class"></trash-icon>
+										</router-link>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
+		</div> -->
 		</div>
 	</div>
 </template>
@@ -506,12 +495,15 @@
 					// }
 					console.log(this.user);
 					await UserService.postUser(this.user);
-					firebase.auth().createUserWithEmailAndPassword(this.user.email, 'P@ssw0rd')
-					.then(user => {
-						console.log('success')
-					}).catch(err => {
-						console.error(err.message)
-					})
+					firebase
+						.auth()
+						.createUserWithEmailAndPassword(this.user.email, "P@ssw0rd")
+						.then((user) => {
+							console.log("success");
+						})
+						.catch((err) => {
+							console.error(err.message);
+						});
 				} catch (err) {
 					console.error(err.message);
 				}

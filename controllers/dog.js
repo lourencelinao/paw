@@ -17,6 +17,13 @@ const getDog = (req, res) => {
         res.send(result)
     })
 }
+const getDogByName = (req, res) => {
+    let sql = `SELECT * FROM dog WHERE dog_name = '${req.params.dog_name}' AND table_status = 'Active'`
+    con.query(sql, (err, result) => {
+        if(err) throw err
+        res.send(result)
+    })
+}
 
 const addDog = (req, res) => {
     let data = []
@@ -65,12 +72,14 @@ const deleteDog = (req, res) => {
                 WHERE dog_id = ${req.params.id}`;
     con.query(sql,(err, result)=>{
         if(err) throw err;
+        res.send()
     });
 };
 
 module.exports = {
     getDogs,
     getDog,
+    getDogByName,
     addDog,
     updateDog,
     deleteDog

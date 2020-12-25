@@ -16,7 +16,7 @@
 				<li
 					class="p-3 rounded-full md:rounded-md hover:bg-bluegray-800"
 					:class="{
-						'bg-bluegray-800 text-white': $router.currentRoute.path.includes(
+						'bg-bluegray-800 text-white shadow-inner': $router.currentRoute.path.includes(
 							'dashboard'
 						),
 					}"
@@ -38,7 +38,7 @@
 				<li
 					class="p-3 rounded-full md:rounded-md hover:bg-bluegray-800"
 					:class="{
-						'bg-bluegray-800 text-white': $router.currentRoute.path.includes(
+						'bg-bluegray-800 text-white shadow-inner': $router.currentRoute.path.includes(
 							'dogs'
 						),
 					}"
@@ -60,7 +60,7 @@
 				<li
 					class="p-3 rounded-full md:rounded-md hover:bg-bluegray-800"
 					:class="{
-						'bg-bluegray-800 text-white':
+						'bg-bluegray-800 text-white shadow-inner':
 							$router.currentRoute.path === '/applications',
 					}"
 				>
@@ -86,7 +86,7 @@
 						),
 					}"
 				>
-					<router-link
+					<!-- <router-link
 						to="/people"
 						class="block flex items-center space-x-2 sm:justify-center md:justify-center lg:justify-start"
 					>
@@ -94,7 +94,7 @@
 							<users-icon size="1.5x" class="custom-class"></users-icon>
 						</div>
 						<div class="hidden sm:hidden md:hidden lg:inline">People</div>
-					</router-link>
+					</router-link> -->
 				</li>
 
 				<!-- admin only -->

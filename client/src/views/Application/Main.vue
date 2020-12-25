@@ -117,8 +117,9 @@
 									<td class="px-6 py-4 whitespace-nowrap">
 										<div class="">
 											<span
-												class="text-sm text-orange-700 bg-orange-100 rounded-full p-1"
-												>Pending</span
+												class="text-sm rounded-full p-1"
+												:class="{ 'bg-green-100 text-green-700': all.fields.Status === 'Approved', 'text-orange-700 bg-orange-100':  all.fields.Status === 'Pending', 'text-red-700 bg-red-100':  all.fields.Status === 'Rejected' }"
+												>{{  all.fields.Status }}</span
 											>
 										</div>
 									</td>
@@ -248,8 +249,9 @@
 									<td class="px-6 py-4 whitespace-nowrap">
 										<div class="">
 											<span
-												class="text-sm text-orange-700 bg-orange-100 rounded-full p-1"
-												>Pending</span
+												class="text-sm rounded-full p-1"
+												:class="{ 'bg-green-100 text-green-700': adoption.fields.Status === 'Approved', 'text-orange-700 bg-orange-100':  adoption.fields.Status === 'Pending', 'text-red-700 bg-red-100':  adoption.fields.Status === 'Rejected' }"
+												>{{  adoption.fields.Status }}</span
 											>
 										</div>
 									</td>
@@ -359,8 +361,9 @@
 									<td class="px-6 py-4 whitespace-nowrap">
 										<div class="">
 											<span
-												class="text-sm text-orange-700 bg-orange-100 rounded-full p-1"
-												>Pending</span
+												class="text-sm rounded-full p-1"
+												:class="{ 'bg-green-100 text-green-700': surrender.fields.Status === 'Approved', 'text-orange-700 bg-orange-100':  surrender.fields.Status === 'Pending', 'text-red-700 bg-red-100':  surrender.fields.Status === 'Rejected' }"
+												>{{  surrender.fields.Status }}</span
 											>
 										</div>
 									</td>
@@ -470,8 +473,9 @@
 									<td class="px-6 py-4 whitespace-nowrap">
 										<div class="">
 											<span
-												class="text-sm text-orange-700 bg-orange-100 rounded-full p-1"
-												>Pending</span
+												class="text-sm rounded-full p-1"
+												:class="{ 'bg-green-100 text-green-700': volunteer.fields.Status === 'Approved', 'text-orange-700 bg-orange-100':  volunteer.fields.Status === 'Pending', 'text-red-700 bg-red-100':  volunteer.fields.Status === 'Rejected' }"
+												>{{  volunteer.fields.Status }}</span
 											>
 										</div>
 									</td>

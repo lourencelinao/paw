@@ -8,7 +8,7 @@ const {
 } = require("../../controllers/outtake");
 
 router.get('/', getOuttake);
-router.post('/addDog', addOuttake);
+router.post('/', addOuttake);
 router.delete('/:id', deleteOuttake);
 
 module.exports = router;

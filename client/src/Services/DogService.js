@@ -37,6 +37,23 @@ class DogService {
 		})
 	}
 
+	static getDogByName(dog_name) {
+		return new Promise((resolve, reject) => {
+			try {
+				let data = []
+				axios
+					.get(`${url}name/${dog_name}`)
+					.then((response) => {
+						data = response.data
+						resolve(data)
+					})
+					.catch((err) => console.error(err.message))
+			} catch (err) {
+				reject(err)
+			}
+		})
+	}
+
 	static postDog(
 		dog
     )

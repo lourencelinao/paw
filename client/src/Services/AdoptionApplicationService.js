@@ -39,20 +39,20 @@ class AdoptionApplicationService {
 				axios
 					.get(url)
 					.then((response) => {
-                        data = response.data
-                        resolve(data)
+						data = response.data
+						resolve(data)
 					})
 					.catch((err) => {
-                        console.error(err.message)
-                        reject(err)
+						console.error(err.message)
+						reject(err)
 					})
 			} catch (err) {
 				console.error(err.message)
 			}
 		})
-    }
-    
-    static getAdoption(id) {
+	}
+
+	static getAdoption(id) {
 		return new Promise((resolve, reject) => {
 			try {
 				let data = []
@@ -71,7 +71,38 @@ class AdoptionApplicationService {
 				console.error(err.message)
 			}
 		})
-    }
+	}
+
+	static approveAdoption(id) {
+		return axios.patch(
+			`https://api.airtable.com/v0/appofDSPsJFzAJsL6/Adoption%20Table`,
+			{
+				records: [
+					{
+						id: id,
+						fields: {
+							Status: 'Approved',
+						},
+					},
+				],
+			}
+		)
+	}
+	static rejectAdoption(id) {
+		return axios.patch(
+			`https://api.airtable.com/v0/appofDSPsJFzAJsL6/Adoption%20Table`,
+			{
+				records: [
+					{
+						id: id,
+						fields: {
+							Status: 'Rejected',
+						},
+					},
+				],
+			}
+		)
+	}
 }
 
 module.exports = AdoptionApplicationService
