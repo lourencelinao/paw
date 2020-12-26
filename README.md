@@ -18,3 +18,6 @@ Password: P@ssw0rd <br>
 
 # Client side is `localhost:8080/client`
 
+### DEMO VIDEO
+https://youtu.be/7khywEiegF4
+
