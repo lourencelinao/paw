@@ -1,6 +1,9 @@
-# paw
-# How to run the backend
-1. `git clone https://github.com/lourencelinao/paw.git`
+# PAW: Admin Dashboard for Managing a Dog Shelter
+## Instructions:
+1. `git clone https://github.com/lourencelinao/paw`
 2. `cd paw`
-3. `npm install`
-4. `npm run nodemon`
+3. `cd client`
+4. `npm install`
+5. `npm run serve`
+6. (open new terminal), must be inside paw folder and run `npm install`
+7. `npm run nodemon`
