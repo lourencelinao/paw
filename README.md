@@ -16,4 +16,5 @@ Password: P@ssw0rd <br>
 
 ### Note: When creating a new user, default password is 'P@ssw0rd'
 
+# Client side is `localhost:8080/client`
 
