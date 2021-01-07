@@ -77,7 +77,8 @@
 										class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
 									>
 										<router-link
-											to=""
+											:to="{ name: 'AdoptionApplicationShow',
+													params: { type: 'adoption', id: x.id }, }"
 											class="flex justify-center space-x-5 text-bluegray-700"
 										>
 											<eye-icon size="1.5x" class="custom-class"></eye-icon>

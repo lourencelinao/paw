@@ -18,7 +18,7 @@
 					alt="profile_picture"
 					class="h-32 w-32 rounded-full shadow"
 				/>
-				<div class="text-center pt-3 text-bluegray-500">Click to update</div>
+				<!-- <div class="text-center pt-3 text-bluegray-500">Click to update</div> -->
 			</div>
 
 			<div class="w-2/3">

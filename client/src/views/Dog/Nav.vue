@@ -20,7 +20,9 @@
 			<router-link :to="{ name: 'DogApplicationMain', params: { id: $route.params.id } }" class="text-bluegray-300" :class="{
 						'text-bluegray-700 text-white': $router.currentRoute.path.includes('/applications'),
 					}">Applications</router-link>
-			<router-link to="" class="text-bluegray-300">Images</router-link>
+			<router-link :to="{ name: 'DogImages', params: { id: $route.params.id } }" class="text-bluegray-300" :class="{
+						'text-bluegray-700 text-white': $router.currentRoute.path.includes('/images'),
+					}">Images</router-link>
 		</div>
 		<!-- <hr class="border-bluegray-200"> -->
 		<div v-if="getPathName('DogProfile')">

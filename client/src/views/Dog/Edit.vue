@@ -1,14 +1,18 @@
 <template>
 	<div>
 		<div class="grid grid-cols-1 my-12">
-			<div class="flex">
-				<div class="w-1/5 mx-auto">
+			<div class="flex justify-center">
+				<!-- <div class="w-1/5 mx-auto">
 					<img
 						src="https://ourfunnylittlesite.com/wp-content/uploads/2018/07/1-4.jpg"
 						alt=""
 						class="rounded-full shadow-md"
 					/>
-				</div>
+					<form @submit.prevent="postDogImage">
+						<input type="file" name="dog_img" class="mt-3">
+						<button class="btn-primary px-4 py-2 mt-3">Save</button>
+					</form>
+				</div> -->
 				<div class="w-2/3 bg-white rounded-md shadow-md">
 					<form @submit.prevent="patchDog">
 						<div class="grid grid-cols-2 gap-4 p-5 text-bluegray-700">

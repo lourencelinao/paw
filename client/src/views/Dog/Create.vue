@@ -187,6 +187,7 @@
 <script>
 	import { UploadIcon, Tren } from "vue-feather-icons";
 	import DogService from "../../Services/DogService";
+	import OuttakeService from "../../Services/OuttakeService";
 	import SuccessfulModal from "../../components/SuccessfulModal";
 	import FailedModal from "../../components/FailedModal";
 	export default {

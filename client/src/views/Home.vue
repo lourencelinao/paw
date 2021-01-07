@@ -16,7 +16,7 @@
 					<div class="mt-5">
 						<div class="font-normal text-lg">E-Mail Address</div>
 						<input
-							type="email"
+							type="text"
 							class="mt-2 px-5 py-3 w-full border-2 border-gray rounded-md focus:ring-2 focus:ring-bluegray-600 focus:outline-none"
 							v-model="email"
 						/>
@@ -30,12 +30,12 @@
 							v-model="password"
 						/>
 					</div>
-
+					<div class="text-red-700 mt-1" v-if="error">{{ error }} </div>
 					<div class="mt-5 flex justify-between items-baseline">
 						<button class="btn-primary py-2 px-4">LOGIN</button>
-						<a href="#" class="text-blue-500 hover:text-blue-300 text-lg"
+						<!-- <a href="#" class="text-blue-500 hover:text-blue-300 text-lg"
 							>Forgot Your Password?</a
-						>
+						> -->
 					</div>
 				</form>
 				<!-- form end -->
@@ -51,7 +51,8 @@ import 'firebase/auth'
     data(){
       return{
         email: '',
-        password: ''
+		password: '',
+		error: ''
       }
     },
 		methods: {
@@ -60,6 +61,7 @@ import 'firebase/auth'
           await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
           this.$router.replace({ path: '/dashboard'} )
 				}catch(err){
+					this.error = err.message
           console.error(err.message)
         }
 			},

@@ -23,7 +23,7 @@
 				</form>
 			</div>
 			<!-- table -->
-			<div class="flex flex-col mt-5">
+			<div class="flex flex-col mt-5" v-if="false">
 				<div class="text-3xl text-bluegray-700">Users</div>
 				<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 					<div

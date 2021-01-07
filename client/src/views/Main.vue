@@ -146,7 +146,7 @@
 							/>
 							<div class="flex hidden sm:flex">
 								<!-- Name -->
-								<div class="font-medium">Lourence Linao</div>
+								<!-- <div class="font-medium">test</div> -->
 								<!-- Heroicon name: chevron-down -->
 								<svg
 									class="-mr-1 ml-2 h-5 w-5"
@@ -256,7 +256,7 @@
 			async signOut(){
 				await firebase.auth().signOut();
 				this.$router.replace({ path: "/" });
-			}
+			},
 		},
 		watch: {
 			$route(to, from) {
@@ -264,6 +264,11 @@
 				this.routeName =
 					this.routeName[0].toUpperCase() + this.routeName.slice(1);
 			},
+		},
+		computed: {
+			// fullName() {
+			// 	return localStorage.firstname + localStorage.lastname
+			// }
 		},
 		created() {
 			this.routeName = this.$router.currentRoute.path.split("/")[1];

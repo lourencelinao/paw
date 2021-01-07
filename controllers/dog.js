@@ -1,9 +1,11 @@
 const con = require('../database/database');
+// const { postRescuedIntake } = require('./intake')
 
 const getDogs = (req, res) => {
     let sql = `SELECT * 
                 FROM dog 
                 WHERE table_status = 'Active'`;
+    // let sql = `SELECT dog.*, img.dog_image_id, img.image FROM dog LEFT JOIN dog_image as img ON dog.dog_id = img.dog_id WHERE dog.table_status = 'Active'`
     con.query(sql, (err, result)=>{
         if(err) throw err;
         res.send(result);
@@ -54,6 +56,27 @@ const addDog = (req, res) => {
         res.status(200).send()
     });
 };
+
+// const addRescuedDog = (req, res) => {
+//     let data = []
+//     let sql = `INSERT INTO dog (dog_name, breed, birthday, sex, weight, color, marks, aggressive, trained, status, description) 
+//                 VALUES ('${req.body.dog_name}', 
+//                         '${req.body.breed}', 
+//                         '${req.body.birthday}', 
+//                         '${req.body.sex}', 
+//                         ${req.body.weight}, 
+//                         '${req.body.color}', 
+//                         '${req.body.marks}', 
+//                         '${req.body.aggressive}', 
+//                         '${req.body.trained}', 
+//                         '${req.body.status}', 
+//                         '${req.body.description}')`;
+//     con.query(sql, (err, result, fields)=>{
+//         if(err) throw err;
+//         postRescuedIntake(result.insertId, )
+//         res.status(200).send()
+//     });
+// };
 
 const updateDog = (req, res) => {
     let sql = `UPDATE dog 

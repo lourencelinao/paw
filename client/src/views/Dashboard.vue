@@ -139,6 +139,8 @@
 		</div>
 		<!-- 3 boxes end -->
 
+		<img src="../icons/undraw_empty_xct9.svg" alt="" v-if="all.length === 0" class="h-1/2 w-1/2 mx-auto">
+
 		<div class="text-2xl text-bluegray-700 mt-5" v-if="false">Quick Stats</div>
 		<div class="space-y-5" v-if="false">
 			<!-- 3 dog boxes -->

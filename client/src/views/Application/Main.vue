@@ -161,7 +161,7 @@
 											>
 												<eye-icon size="1.5x" class="custom-class"></eye-icon>
 											</router-link>
-											<trash-icon size="1.5x" class="custom-class"></trash-icon>
+											<!-- <trash-icon size="1.5x" class="custom-class"></trash-icon> -->
 										</div>
 									</td>
 								</tr>
@@ -274,7 +274,7 @@
 											>
 												<eye-icon size="1.5x" class="custom-class"></eye-icon>
 											</router-link>
-											<trash-icon size="1.5x" class="custom-class"></trash-icon>
+											<!-- <trash-icon size="1.5x" class="custom-class"></trash-icon> -->
 										</div>
 									</td>
 								</tr>
@@ -386,7 +386,7 @@
 											>
 												<eye-icon size="1.5x" class="custom-class"></eye-icon>
 											</router-link>
-											<trash-icon size="1.5x" class="custom-class"></trash-icon>
+											<!-- <trash-icon size="1.5x" class="custom-class"></trash-icon> -->
 										</div>
 									</td>
 								</tr>
@@ -498,7 +498,7 @@
 											>
 												<eye-icon size="1.5x" class="custom-class"></eye-icon>
 											</router-link>
-											<trash-icon size="1.5x" class="custom-class"></trash-icon>
+											<!-- <trash-icon size="1.5x" class="custom-class"></trash-icon> -->
 										</div>
 									</td>
 								</tr>
@@ -508,6 +508,8 @@
 				</div>
 			</div>
 		</div>
+
+		<img src="../../icons/undraw_No_data_re_kwbl.svg" alt="" v-if="all.length === 0" class="h-1/3 w-1/3 mx-auto mt-5">
 	</div>
 </template>
 

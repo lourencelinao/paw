@@ -21,6 +21,7 @@ import DogMedicalVaccineEdit from '../views/Dog/Medical/VaccineEdit.vue'
 import DogIntakeOuttakeMain from '../views/Dog/IntakeOuttake/Main.vue'
 
 import DogApplicationMain from '../views/Dog/DogApplication/Main.vue'
+import DogImageMain from '../views/Dog/Image/Main.vue'
 
 import ApplicationMain from '../views/Application/Main.vue'
 import AdoptionApplicationShow from '../views/Application/AdoptionApplicationShow.vue'
@@ -124,6 +125,11 @@ const routes = [
 						name: 'VaccineEdit',
 						component: DogMedicalVaccineEdit,
 					},
+					{
+						path: 'images',
+						name: 'DogImages',
+						component: DogImageMain
+					}
 				],
 			},
 			{
@@ -149,6 +155,7 @@ const routes = [
 					
 				],
 			},
+			
 		],
 	},
 	{
@@ -234,6 +241,7 @@ const routes = [
 		children: [
 			{
 				path: '',
+				name: 'ClinicCreate',
 				component: ClinicCreate
 			}
 		]

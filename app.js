@@ -3,12 +3,18 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
+const fileUpload = require('express-fileupload')
+const path = require('path')
 const { protect } = require("./middleware/auth");
 
 // middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use(fileUpload({
+    // configure middleware to create parent directories
+    createParentPath: true
+}));
 
 // unprotected route
 app.use("/api/user", require("./routes/api/user"));
@@ -24,13 +30,15 @@ app.use("/api/vaccine", require('./routes/api/vaccination'))
 app.use("/api/person", require('./routes/api/person'))
 
 
+app.use("/api/image", require('./routes/api/dog_image'))
+
+
 app.get('/',(req,res)=>{
     res.send("<h1>Hello World</h1>");
 });
 // routes below are protected, meaning it needs authentication and authorization
 // app.use('/api',protect)
 
-// nigger ****************************
 
 // please put route middleware below, example
 // app.use('/aaaa', require('./routes/api/aaaa'))

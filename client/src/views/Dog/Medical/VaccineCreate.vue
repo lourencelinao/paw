@@ -13,7 +13,10 @@
 				<!-- name -->
 				<div class="grid grid-cols-1 sm:gap-4 gap-y-4 w-1/2 mx-auto">
 					<div>
-						<div class="text-xl text-bluegray-700">Clinic</div>
+						<div class="flex justify-between items-center">
+							<div class="text-xl text-bluegray-700">Clinic</div>
+							<router-link :to="{ name: 'ClinicCreate' }" class="text-sm text-bluegray-700">Add New Clinic</router-link>
+						</div>
 						<select
 							class="w-full px-4 py-3 text-sm rounded focus:outline-none focus:ring-2 focus:ring-bluegray-700"
 							v-model="vaccine.clinic_id"

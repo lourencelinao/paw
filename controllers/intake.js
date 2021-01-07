@@ -8,6 +8,14 @@ const postIntake = (req, res) => {
   });
 };
 
+// const postRescuedIntake = (dog_id, intakeable_type, firstname, middle_initial, lastname, attendant) => {
+//   let sql = `INSERT INTO intake(dog_id, intakeable_type, firstname, middle_initial, lastname, attendant) VALUES(${dog_id},'${intakeable_type}', '${firstname}', '${middle_initial}', '${lastname}', '${attendant}')`;
+//   connection.query(sql, (err) => {
+//     if (err) throw err;
+//     res.send()
+//   });
+// }
+
 //GOOD
 const getIntake = (req, res) => {
   let sql = `SELECT * FROM intake WHERE dog_id = ${req.params.id}`;
@@ -46,4 +54,5 @@ module.exports = {
   getIntake,
   patchIntake,
   deleteIntake,
+  // postRescuedIntake
 };
