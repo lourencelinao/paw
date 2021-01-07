@@ -23,7 +23,7 @@ const addOuttake = (req, res) => {
 const deleteOuttake = (req, res) => {
     let sql = `UPDATE outtake 
                 SET table_status = 'Deleted', deleted = now() 
-                WHERE outtake_id = ${req.params.outtake_id}`;
+                WHERE outtake_id = ${req.params.id}`;
     con.query(sql, (err, result)=>{
         if(err) throw err;
     })
