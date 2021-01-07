@@ -1,5 +1,15 @@
 const con = require('../../database/database');
 
+const getDog_image = (req, res) => {
+    let sql = `SELECT * 
+                FROM dog_image
+                WHERE table_status = 'Active' AND dog_id = ${req.params.id}`;
+    con.query(sql, (err, result)=>{
+        if(err) throw err;
+        res.send(result);
+    });
+};
+
 const addDog_image = (req, res) => {
     if(req.files){
         let file = req.files.image;
@@ -30,6 +40,7 @@ const deleteDog_image = (req, res) => {
 };
 
 module.exports = {
+    getDog_image,
     addDog_image,
     deleteDog_image
 };
