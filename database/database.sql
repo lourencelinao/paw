@@ -283,4 +283,4 @@ create table action(
 );
 
 INSERT INTO person(email) VALUES('admin@admin.com');
-INSERT INTO users(person_id, email) VALUES(1, 'admin@admin.com');
+INSERT INTO users(person_id, email_address) VALUES(1, 'admin@admin.com');
