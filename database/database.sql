@@ -282,5 +282,5 @@ create table action(
 	constraint fk_action foreign key(user_id) references users(user_id)
 );
 
-INSERT INTO person(email) VALUES('admin@admin.com')
-INSERT INTO users(person_id, email) VALUES(1, 'admin@admin.com')
+INSERT INTO person(email) VALUES('admin@admin.com');
+INSERT INTO users(person_id, email) VALUES(1, 'admin@admin.com');
