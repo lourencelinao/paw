@@ -41,6 +41,7 @@ firebase.auth().onAuthStateChanged(async (firebaseUser) => {
       console.log(user)
 			localStorage.id = user[0].user_id
       localStorage.password = user[0].password
+      localStorage.email = firebaseUser.email
       console.log(localStorage)
 			// localStorage.firstname = user[0].firstname
 			// localStorage.lastname = user[0].lastname

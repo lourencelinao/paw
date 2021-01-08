@@ -14,7 +14,7 @@
 		<div class="bg-white shadow rounded-lg mt-5 flex px-12 py-5 space-x-5">
 			<div class="w-1/3 flex flex-col items-center">
 				<img
-					src="https://i.pravatar.cc/300"
+					:src="`https://avatars.dicebear.com/api/initials/${person[0].email_address}.svg`"
 					alt="profile_picture"
 					class="h-32 w-32 rounded-full shadow"
 				/>
@@ -201,7 +201,7 @@
 						!this.person[0].first_name ||
 						!this.person[0].middle_initial ||
 						!this.person[0].last_name ||
-						!this.person[0].birthdate ||
+						!this.person[0].birthday ||
 						!this.person[0].contact_number ||
 						!this.person[0].address1 ||
 						!this.person[0].address2 ||
@@ -211,6 +211,7 @@
 						setTimeout(() => {
 							this.failedToggle = false;
 						}, 3000);
+						console.log(this.person[0])
 					} else {
 						await PeopleService.patchPeople(this.person[0]);
 							console.log("patch success");

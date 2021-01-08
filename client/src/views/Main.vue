@@ -140,7 +140,7 @@
 						>
 							<!-- Profile pic -->
 							<img
-								src="https://i.pravatar.cc/300"
+								:src="`https://avatars.dicebear.com/api/initials/${email}.svg`"
 								alt="profile_picture"
 								class="h-10 w-10 rounded-full shadow"
 							/>
@@ -148,7 +148,7 @@
 								<!-- Name -->
 								<!-- <div class="font-medium">test</div> -->
 								<!-- Heroicon name: chevron-down -->
-								<svg
+								<!-- <svg
 									class="-mr-1 ml-2 h-5 w-5"
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 20 20"
@@ -159,7 +159,7 @@
 										fill-rule="evenodd"
 										d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
 										clip-rule="evenodd"
-									/>
+									/> -->
 								</svg>
 							</div>
 						</button>
@@ -197,12 +197,11 @@
 								<user-icon size="1.5x" class="custom-class"></user-icon>
 								<div>Profile</div>
 							</router-link>
-							<a
-								href="#"
+							<li
 								class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex space-x-2 items-center"
 								role="menuitem"
 								><log-out-icon size="1.5x" class="custom-class"></log-out-icon>
-								<button v-on:click="signOut()">Sign out</button></a
+								<button v-on:click="signOut()">Sign out</button></li
 							>
 						</div>
 					</div>
@@ -242,6 +241,7 @@
 			return {
 				dropdownState: false,
 				routeName: "",
+				email: ''
 			};
 		},
 		methods: {
@@ -273,6 +273,7 @@
 		created() {
 			this.routeName = this.$router.currentRoute.path.split("/")[1];
 			this.routeName = this.routeName[0].toUpperCase() + this.routeName.slice(1);
+			this.email = localStorage.email
 		},
 	};
 </script>
