@@ -9,6 +9,6 @@ const {
 
 router.get('/', getClinics);
 router.post('/', addClinic);
-router.delete('/', deleteClinic);
+router.delete('/:id', deleteClinic);
 
 module.exports = router

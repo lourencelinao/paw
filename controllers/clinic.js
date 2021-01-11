@@ -16,10 +16,9 @@ const addClinic = (req, res) => {
 }
 
 const deleteClinic = (req, res) => {
-    connection.query("UPDATE clinic SET table_status = 'Deleted', deleted = now() WHERE clinic_id = '"+req.body.clinic_id+"'",(err, result)=>{
-        if(result){
-            res.send(result);
-        }
+    connection.query("UPDATE clinic SET table_status = 'Deleted', deleted = now() WHERE clinic_id = '"+req.params.id+"'",(err, result)=>{
+       if(err) throw err
+       res.send()
     })
 }
 

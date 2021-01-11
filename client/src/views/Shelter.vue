@@ -262,20 +262,20 @@
 										<td
 											class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
 										>
-											<router-link
-												to=""
+											<button
 												class="flex justify-center space-x-5 text-bluegray-700"
+												@click="deleteClinic(clinic.clinic_id)"
 											>
-												<eye-icon size="1.5x" class="custom-class"></eye-icon>
-												<refresh-cw-icon
+												<!-- <eye-icon size="1.5x" class="custom-class"></eye-icon> -->
+												<!-- <refresh-cw-icon
 													size="1.5x"
 													class="custom-class"
-												></refresh-cw-icon>
+												></refresh-cw-icon> -->
 												<trash-icon
 													size="1.5x"
 													class="custom-class"
 												></trash-icon>
-											</router-link>
+											</button>
 										</td>
 									</tr>
 								</tbody>
@@ -508,6 +508,14 @@
 					console.error(err.message);
 				}
 			},
+			async deleteClinic(id){
+				try{
+					await ClinicService.deleteClinic(id)
+					console.log('test')
+				}catch(err){
+					console.error(err.message)
+				}
+			}
 		},
 		created() {
 			this.getClinics();
